@@ -1,0 +1,264 @@
+/* ================= CLIENTS SECTION ================= */
+
+.clients-section {
+    width: 100%;
+    padding: 90px 0;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* SECTION TITLE */
+
+.clients-title {
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    color: white;
+}
+
+/* FADE EFFECTS (LEFT / RIGHT) */
+
+.clients-section::before,
+.clients-section::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 140px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.clients-section::before {
+    left: 0;
+    background: linear-gradient(
+        to right,
+        #0a0a14 0%,
+        rgba(10, 10, 20, 0.85) 45%,
+        transparent 100%
+    );
+}
+
+.clients-section::after {
+    right: 0;
+    background: linear-gradient(
+        to left,
+        #0a0a14 0%,
+        rgba(10, 10, 20, 0.85) 45%,
+        transparent 100%
+    );
+}
+
+/* ================= SCROLL CONTAINER ================= */
+
+.clients-scroll {
+    display: flex;
+    width: max-content;
+    gap: 70px;
+    animation: scrollLogos 35s linear infinite;
+}
+
+/* SMOOTH INFINITE SCROLL */
+
+@keyframes scrollLogos {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* ================= LOGO ITEM ================= */
+
+.client-logo {
+    width: 130px;
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0.85;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+/* IMAGE */
+
+.client-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* HOVER EFFECT */
+
+.client-logo:hover {
+    transform: scale(1.08);
+    opacity: 1;
+}
+
+
+
+/* Responsive */
+@media (max-width: 1440px) {
+
+    .clients-title {
+        font-size: 2.5rem;
+        margin-bottom: 45px;
+    }
+
+    .clients-scroll {
+        gap: 55px;
+        animation-duration: 32s;
+    }
+
+    .client-logo {
+        width: 120px;
+        height: 80px;
+    }
+
+    .clients-section::before,
+    .clients-section::after {
+        width: 110px;
+    }
+}
+
+@media (max-width: 1240px) {
+
+    .clients-title {
+        font-size: 2.3rem;
+    }
+
+    .clients-scroll {
+        gap: 48px;
+    }
+
+    .client-logo {
+        width: 110px;
+        height: 75px;
+    }
+}
+
+
+@media (max-width: 1080px) {
+
+    .clients-title {
+        font-size: 2.1rem;
+        margin-bottom: 38px;
+    }
+
+    .clients-scroll {
+        gap: 40px;
+    }
+
+    .client-logo {
+        width: 100px;
+        height: 70px;
+    }
+}
+
+
+@media (max-width: 920px) {
+
+    .clients-section {
+        padding: 75px 0;
+    }
+
+    .clients-title {
+        font-size: 1.9rem;
+    }
+
+    .clients-scroll {
+        gap: 32px;
+    }
+
+    .client-logo {
+        width: 95px;
+        height: 65px;
+    }
+
+    .clients-section::before,
+    .clients-section::after {
+        display: none;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .clients-section {
+        padding: 60px 0;
+    }
+
+    .clients-title {
+        font-size: 1.7rem;
+        letter-spacing: 1px;
+        margin-bottom: 30px;
+    }
+
+    .clients-scroll {
+        gap: 26px;
+        animation-duration: 26s;
+    }
+
+    .client-logo {
+        width: 85px;
+        height: 55px;
+    }
+}
+
+@media (max-width: 568px) {
+
+    .clients-title {
+        font-size: 1.5rem;
+    }
+
+    .clients-scroll {
+        gap: 20px;
+    }
+
+    .client-logo {
+        width: 72px;
+        height: 48px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .clients-section {
+        padding: 45px 0;
+    }
+
+    .clients-title {
+        font-size: 1.35rem;
+        margin-bottom: 22px;
+    }
+
+    .clients-scroll {
+        gap: 18px;
+        animation-duration: 22s;
+    }
+
+    .client-logo {
+        width: 65px;
+        height: 42px;
+        opacity: 1;
+    }
+}
+
+
+
+@media (max-width: 360px) {
+
+    .clients-title {
+        font-size: 1.2rem;
+    }
+
+    .clients-scroll {
+        gap: 14px;
+    }
+
+    .client-logo {
+        width: 58px;
+        height: 38px;
+    }
+}

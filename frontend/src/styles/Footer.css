@@ -1,0 +1,218 @@
+/* ================= FOOTER ================= */
+
+.brand-footer {
+  margin-top: 120px;
+  background: #07070c;
+
+  border-top: 2px solid #ffd700;   /* Yellow Accent Line */
+
+  padding: 70px 24px 30px;
+}
+
+/* ================= CONTAINER ================= */
+
+.footer-container {
+  max-width: 1250px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 1fr;
+  gap: 60px;
+
+  align-items: flex-start;
+}
+
+/* ================= ABOUT ================= */
+
+.footer-about p {
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+  font-size: 0.95rem;
+  margin: 18px 0 26px;
+  max-width: 360px;
+}
+
+/* Logo */
+
+.footer-logo {
+  width: 70px;
+  height: 70px;
+
+  background-image: url("../components/images/designs & logos/brandingjester_logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* ================= SOCIAL ================= */
+
+.footer-social {
+  display: flex;
+  gap: 18px;
+}
+
+.footer-social a {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  color: white;
+  font-size: 1.1rem;
+
+  transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+  background: #ffd700;
+  color: black;
+  transform: translateY(-3px);
+}
+
+/* ================= LINKS ================= */
+
+.footer-links h3,
+.footer-contact h3 {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 22px;
+}
+
+/* Links */
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.95rem;
+
+  transition: all 0.25s ease;
+}
+
+.footer-links a:hover {
+  color: #ffd700;
+  transform: translateX(4px);
+}
+
+/* ================= CONTACT ================= */
+
+.footer-contact p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  line-height: 1.7;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  margin-bottom: 14px;
+}
+
+/* Icons */
+
+.footer-contact i {
+  color: #ffd700;
+  margin-top: 3px;
+}
+
+/* ================= BOTTOM ================= */
+
+.footer-bottom {
+  margin-top: 55px;
+  padding-top: 22px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9rem;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* ---------- Large Screens ---------- */
+
+@media (max-width: 1440px) {
+  .footer-container {
+    gap: 50px;
+  }
+}
+
+/* ---------- Laptops ---------- */
+
+@media (max-width: 1080px) {
+
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .footer-contact {
+    grid-column: span 2;
+  }
+}
+
+/* ---------- Tablets ---------- */
+
+@media (max-width: 768px) {
+
+  .brand-footer {
+    padding: 55px 18px 26px;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 38px;
+    text-align: center;
+  }
+
+  .footer-about p {
+    margin: 12px auto 22px;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+
+  .footer-contact p {
+    justify-content: center;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 480px) {
+
+  .footer-social a {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+
+  .footer-links h3,
+  .footer-contact h3 {
+    font-size: 1.05rem;
+  }
+}
+
+
+

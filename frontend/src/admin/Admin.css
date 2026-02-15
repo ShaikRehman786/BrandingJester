@@ -1,0 +1,290 @@
+/* ================= PAGE BACKGROUND ================= */
+
+.admin-page {
+  min-height: 100vh;
+  padding: 35px;
+
+  background:
+    radial-gradient(circle at top left, rgba(138, 43, 226, 0.15), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(255, 215, 0, 0.08), transparent 40%),
+    #0c0c14;
+
+  color: rgb(255, 255, 255);
+  font-family: "Inter", sans-serif;
+}
+
+/* ================= HEADER ================= */
+
+.admin-header {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 22px;
+  padding: 18px 26px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 35px;
+  flex-wrap: wrap;
+}
+
+.admin-header h1 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Header Buttons Container */
+.admin-header-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ================= BACK BUTTON ================= */
+
+.back-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: white;
+
+  padding: 9px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+
+  font-size: 0.82rem;
+  font-weight: 500;
+
+  transition: all 0.25s ease;
+}
+
+.back-btn:hover {
+  background: rgba(138, 43, 226, 0.25);
+  border-color: rgba(138, 43, 226, 0.6);
+  transform: translateY(-1px);
+  box-shadow: 0 0 14px rgba(138, 43, 226, 0.35);
+}
+
+.back-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* ================= LOGOUT BUTTON ================= */
+
+.logout-btn {
+  background: linear-gradient(
+    135deg,
+    rgba(138, 43, 226, 0.6),
+    rgba(138, 43, 226, 0.25)
+  );
+
+  border: none;
+  color: white;
+
+  padding: 10px 20px;
+  border-radius: 14px;
+  cursor: pointer;
+
+  font-size: 0.85rem;
+  font-weight: 500;
+
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 18px rgba(138, 43, 226, 0.45);
+}
+
+/* ================= STATS GRID ================= */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+
+  margin-bottom: 30px;
+}
+
+/* ================= STAT CARDS ================= */
+
+.stat-card {
+  background: linear-gradient(145deg, #171726, #11111b);
+
+  border-radius: 20px;
+  padding: 22px;
+
+  border: 1px solid rgba(138, 43, 226, 0.25);
+
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.25), transparent 70%);
+  opacity: 0;
+  transition: 0.35s ease;
+}
+
+.stat-card:hover::before {
+  opacity: 1;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(138, 43, 226, 0.8);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Text */
+.stat-card span {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.stat-card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #ffd700;
+}
+
+/* ================= ACTION SECTION ================= */
+
+.admin-actions {
+  margin-top: 10px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+/* ================= ACTION CARDS ================= */
+
+.action-card {
+  background: rgba(255, 255, 255, 0.025);
+
+  border-radius: 18px;
+  padding: 22px;
+  cursor: pointer;
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.action-card:hover {
+  background: rgba(138, 43, 226, 0.12);
+  border-color: rgba(138, 43, 226, 0.45);
+  transform: translateY(-5px);
+}
+
+.action-card h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.action-card p {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ================= LOADING / ERROR ================= */
+
+.admin-loading,
+.admin-error {
+  padding: 40px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ===================================================== */
+/* ================= RESPONSIVE DESIGN ================= */
+/* ===================================================== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .admin-page {
+    padding: 28px;
+  }
+
+  .stat-card strong {
+    font-size: 1.5rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .admin-page {
+    padding: 20px;
+  }
+
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .admin-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .admin-header-actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    padding: 18px;
+  }
+
+  .stat-card strong {
+    font-size: 1.4rem;
+  }
+
+  /* Bigger tap targets */
+  .logout-btn,
+  .back-btn {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+/*  Small Phones */
+@media (max-width: 480px) {
+  .admin-header h1 {
+    font-size: 1.05rem;
+  }
+
+  .stat-card strong {
+    font-size: 1.25rem;
+  }
+
+  .action-card {
+    padding: 18px;
+  }
+}
+
+/* Large Screens */
+@media (min-width: 1600px) {
+  .admin-page {
+    padding: 50px 120px;
+  }
+}

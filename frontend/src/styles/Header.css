@@ -1,0 +1,361 @@
+/* ================= MAIN HEADER WRAPPER ================= */
+
+.main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  position: fixed;
+  top: 20px;
+  left: 0;
+
+  z-index: 1000;
+}
+
+/* ================= HEADER CONTAINER ================= */
+
+header {
+  display: flex;
+  width: 100%;
+  max-width: 1250px;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 38px;
+
+  border-radius: 60px;
+  border: 1px solid rgb(255, 255, 255);
+
+  background: rgba(15, 15, 25, 0.55);
+  backdrop-filter: blur(18px);
+
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-weight: bold;
+
+}
+
+header:hover {
+  transform: translateY(-1px);
+  font-weight: 700;
+
+}
+
+/* ================= LOGO ================= */
+
+/* ================= LOGO ================= */
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+/* Logo Container */
+
+.logo-square {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;  
+  flex-shrink: 0;    
+}
+
+/* Logo Image */
+
+.logo-square img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+
+  transition: transform 0.35s ease;
+}
+
+/* Premium Hover Micro Interaction */
+
+.logo-square:hover img {
+  transform: scale(1.05);
+}
+
+
+/* ================= NAVIGATION ================= */
+
+.subnav ul {
+  display: flex;
+  gap: 50px;
+  list-style: none;
+}
+
+.subnav a {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  opacity: 0.75;
+
+  transition: opacity 0.25s ease;
+}
+
+.subnav a:hover {
+  opacity: 1;
+}
+
+/* ================= CTA BUTTONS ================= */
+
+.cta-buttons {
+  display: flex;
+  gap: 18px;
+
+  background-color: #ffd700;
+  padding: 10px 22px;
+
+  border-radius: 30px;
+}
+
+.cta-buttons a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  font-size: 0.95rem;
+
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.cta-buttons a:hover {
+  color: #333;
+  transform: scale(1.05);
+}
+
+/* ================= HAMBURGER ================= */
+
+.menu-toggle {
+  display: none;
+  font-size: 1.9rem;
+  cursor: pointer;
+  color: white;
+
+  transition: transform 0.25s ease;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.05);
+}
+
+/* ================= MOBILE MENU PANEL ================= */
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+
+  width: 280px;
+  height: 100vh;
+
+  background: rgba(10, 10, 20, 0.96);
+  backdrop-filter: blur(20px);
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 110px 35px;
+  gap: 26px;
+
+  transition: right 0.35s ease;
+
+  z-index: 999;
+}
+
+.mobile-menu a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.05rem;
+  opacity: 0.7;
+
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.mobile-menu a:hover {
+  opacity: 1;
+  transform: translateX(6px);
+}
+
+/* ACTIVE MENU */
+
+.mobile-menu.active {
+  right: 0;
+}
+
+/* ================= BODY OFFSET (CRITICAL) ================= */
+
+body {
+  padding-top: 115px;
+}
+
+/* ================= RESPONSIVE BREAKPOINTS ================= */
+
+/* ---------- 1440px ---------- */
+
+@media (max-width: 1440px) {
+
+  header {
+    max-width: 1180px;
+  }
+
+  .subnav ul {
+    gap: 42px;
+  }
+
+  .logo-square {
+    width: 78px;
+    height: 78px;
+  }
+}
+
+/* ---------- 1240px ---------- */
+
+@media (max-width: 1240px) {
+
+  header {
+    max-width: 1000px;
+    padding: 13px 30px;
+  }
+
+  .subnav ul {
+    gap: 34px;
+  }
+
+  .subnav a {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .logo-square {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+/* ---------- 1080px ---------- */
+
+@media (max-width: 1080px) {
+
+  header {
+    max-width: 900px;
+  }
+
+  .subnav ul {
+    gap: 26px;
+  }
+
+  .subnav a {
+    font-size: 0.9rem;
+  }
+
+  .logo-square {
+    width: 62px;
+    height: 62px;
+  }
+
+  .cta-buttons {
+    padding: 8px 18px;
+  }
+}
+
+/* ---------- 920px ---------- */
+
+@media (max-width: 920px) {
+
+  header {
+    border-radius: 38px;
+    padding: 10px 22px;
+  }
+
+  .subnav ul {
+    gap: 22px;
+  }
+
+  .subnav a {
+    font-size: 0.85rem;
+  }
+
+  .logo-square {
+    width: 55px;
+    height: 55px;
+  }
+}
+
+/* ---------- 768px (NAV SWITCH) ---------- */
+
+@media (max-width: 768px) {
+
+  .subnav,
+  .cta-buttons {
+    display: none;  
+  }
+
+  .menu-toggle {
+    display: block;  
+  }
+
+  header {
+    border-radius: 34px;
+    padding: 10px 20px;
+  }
+
+  .logo-square {
+    width: 52px;
+    height: 52px;
+  }
+
+  body {
+    padding-top: 95px;
+  }
+}
+
+/* ---------- 568px ---------- */
+
+@media (max-width: 568px) {
+
+  header {
+    border-radius: 28px;
+    padding: 9px 16px;
+  }
+
+  .logo-square {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* ---------- 480px ---------- */
+
+@media (max-width: 480px) {
+
+  .logo-square {
+    width: 44px;
+    height: 44px;
+  }
+
+  .mobile-menu {
+    width: 100%;
+  }
+}
+
+/* ---------- 360px ---------- */
+
+@media (max-width: 360px) {
+
+  header {
+    padding: 8px 10px;
+  }
+
+  .logo-square {
+    width: 40px;
+    height: 40px;
+  }
+}

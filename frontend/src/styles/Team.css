@@ -1,0 +1,273 @@
+/* ================= TEAM SECTION ================= */
+
+.team-section {
+  width: 100%;
+  padding: 110px 20px;
+  text-align: center;
+}
+
+/* ================= TITLE ================= */
+
+.team-title {
+  font-size: 2.6rem;
+  color: white;
+  margin-bottom: 14px;
+}
+
+.highlight {
+  color: #ffd700;
+}
+
+/* ================= DESCRIPTION ================= */
+
+.team-desc {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 65px;
+  line-height: 1.6;
+}
+
+/* ================= ROW LAYOUT ================= */
+
+.team-row {
+  display: grid;
+  gap: 26px;
+  max-width: 1250px;
+  margin: 0 auto 45px;
+}
+
+/* FOUNDERS */
+
+.team-row.founders {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+/* MEMBERS */
+
+.team-row.members {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+/* ================= CARD ================= */
+
+.team-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  border-radius: 26px;
+  overflow: hidden;
+  border: 1px solid rgba(138, 43, 226, 0.35);
+
+  transition: transform 0.35s ease,
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+
+  /* ✅ CRITICAL → FORCE STACK */
+  display: flex;
+  flex-direction: column;
+
+  min-height: 340px;
+}
+
+/* PREMIUM HOVER */
+
+.team-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(138, 43, 226, 0.9);
+
+  box-shadow:
+    0 28px 65px rgba(0, 0, 0, 0.65),
+    0 0 22px rgba(138, 43, 226, 0.25);
+}
+
+/* ================= IMAGE ================= */
+
+.team-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+
+  /* ✅ ABSOLUTE FIX */
+  display: block;
+  flex-shrink: 0;
+
+  transition: transform 0.5s ease;
+}
+
+.team-card:hover img {
+  transform: scale(1.04);
+}
+
+/* ================= INFO ================= */
+
+.team-info {
+  padding: 22px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  align-items: center;
+  text-align: center;
+}
+
+/* NAME */
+
+.team-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: white;
+}
+
+/* ROLE */
+
+.team-role {
+  font-size: 0.9rem;
+  color: #ffd700;
+}
+
+/* EXTRA TEXT */
+
+.team-extra {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ================= SOCIAL LINKS ================= */
+
+.team-socials {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+.team-socials a {
+  text-decoration: none;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+
+  transition: color 0.25s ease,
+              transform 0.25s ease;
+}
+
+.team-socials a:hover {
+  color: #ffd700;
+  transform: translateY(-1px);
+}
+
+/* ================= NUCLEAR DEFENSE (Layout Lock) ================= */
+
+.team-card img,
+.team-card .team-info {
+  width: 100%;
+}
+
+/* ================= RESPONSIVE SYSTEM ================= */
+
+/* ---------- 1440px ---------- */
+
+@media (max-width: 1440px) {
+  .team-title {
+    font-size: 2.4rem;
+  }
+}
+
+/* ---------- 1240px ---------- */
+
+@media (max-width: 1240px) {
+  .team-card img {
+    height: 240px;
+  }
+}
+
+/* ---------- 920px ---------- */
+
+@media (max-width: 920px) {
+  .team-title {
+    font-size: 2.1rem;
+  }
+
+  .team-desc {
+    font-size: 0.95rem;
+  }
+
+  .team-row.members {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+/* ---------- 768px ---------- */
+
+@media (max-width: 768px) {
+  .team-section {
+    padding: 90px 16px;
+  }
+
+  .team-title {
+    font-size: 1.9rem;
+  }
+
+  .team-desc {
+    margin-bottom: 45px;
+  }
+
+  .team-card img {
+    height: 220px;
+  }
+}
+
+/* ---------- 568px ---------- */
+
+@media (max-width: 568px) {
+  .team-card img {
+    height: 210px;
+  }
+
+  .team-name {
+    font-size: 0.95rem;
+  }
+}
+
+/* ---------- 480px ---------- */
+
+@media (max-width: 480px) {
+  .team-title {
+    font-size: 1.7rem;
+  }
+
+  .team-desc {
+    font-size: 0.9rem;
+  }
+
+  .team-card img {
+    height: 200px;
+  }
+}
+
+/* ---------- 360px ---------- */
+
+@media (max-width: 360px) {
+  .team-title {
+    font-size: 1.55rem;
+  }
+
+  .team-card img {
+    height: 185px;
+  }
+
+  .team-info {
+    padding: 18px;
+  }
+}
+
+
+
+.team-section {
+  padding: 65px 20px;
+}
+
+.team-desc {
+  margin-bottom: 40px;   /* BEFORE: 65px */
+}

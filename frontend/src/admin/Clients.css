@@ -1,0 +1,194 @@
+/* ================= PAGE LAYOUT ================= */
+
+.clients-page {
+  padding: 40px;
+  color: white;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f1a, #1a1a2e);
+  font-family: "Inter", sans-serif;
+}
+
+/* ================= HEADER ================= */
+
+.clients-header {
+  margin-bottom: 30px;
+}
+
+.clients-header h2 {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* ================= FORM ================= */
+
+.client-form {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-bottom: 35px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ================= INPUTS ================= */
+
+.client-form input {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: white;
+  outline: none;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.client-form input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.client-form input:focus {
+  border-color: #7c5cff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ================= FILE INPUT ================= */
+
+.client-form input[type="file"] {
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* ================= FORM ACTIONS ================= */
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ================= BUTTONS ================= */
+
+button {
+  border: none;
+  padding: 11px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+/* PRIMARY BUTTON */
+
+.form-actions button:first-child {
+  background: linear-gradient(135deg, #7c5cff, #5a3fff);
+  color: white;
+}
+
+.form-actions button:first-child:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(124, 92, 255, 0.35);
+}
+
+/* CANCEL BUTTON */
+
+.cancel-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.cancel-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ================= LIST ================= */
+
+.clients-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 15px;
+}
+
+/* ================= CLIENT CARD ================= */
+
+.client-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.client-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+/* ================= CLIENT INFO ================= */
+
+.client-info strong {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* ================= CLIENT ACTIONS ================= */
+
+.client-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* EDIT BUTTON */
+
+.edit-btn {
+  background: rgba(124, 92, 255, 0.15);
+  color: #a78bff;
+}
+
+.edit-btn:hover {
+  background: rgba(124, 92, 255, 0.25);
+}
+
+/* DELETE BUTTON */
+
+.delete-btn {
+  background: rgba(255, 80, 80, 0.15);
+  color: #ff6b6b;
+}
+
+.delete-btn:hover {
+  background: rgba(255, 80, 80, 0.25);
+}
+
+/* ================= LOADING ================= */
+
+.clients-loading {
+  padding: 40px;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .clients-page {
+    padding: 25px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,160 @@
+/* ================= HERO ================= */
+
+.hero {
+  text-align: center;
+  max-width: 1200px;
+  padding: 110px 20px 50px;
+}
+
+/* ================= HEADLINES ================= */
+
+.hero h1 {
+  font-size: 3.4rem;
+  font-weight: 700;
+  color: white;
+}
+
+.hero h2 {
+  font-size: 2rem;
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 22px;
+}
+
+/* ================= ROTATING TEXT ================= */
+
+.rotating-text {
+  display: inline-block;
+  position: relative;
+  color: #ffd700;
+}
+
+/* ===== TOP TEXT (SLIDE UP) ===== */
+
+.rotating-text.up.enter {
+  animation: slideUpIn 0.4s ease forwards;
+}
+
+.rotating-text.up.exit {
+  animation: slideUpOut 0.4s ease forwards;
+}
+
+@keyframes slideUpIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+}
+
+/* ===== SECOND TEXT (SLIDE DOWN) ===== */
+
+.rotating-text.down.enter {
+  animation: slideDownIn 0.4s ease forwards;
+}
+
+.rotating-text.down.exit {
+  animation: slideDownOut 0.4s ease forwards;
+}
+
+@keyframes slideDownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDownOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+}
+
+/* ================= DESCRIPTION ================= */
+
+.hero p {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.8;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* ================= TAGS ================= */
+
+.tag {
+  display: inline-flex;
+  padding: 5px 11px;
+  margin: 0 3px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  transform: skewX(-12deg);
+}
+
+.tag.yellow {
+  background: #ffd700;
+  color: black;
+}
+
+.tag.purple {
+  background: #5b4bff;
+  color: white;
+}
+
+/* ================= CTA ================= */
+
+.cta-section {
+  margin-top: 32px;
+}
+
+.btn-get-started {
+  text-decoration: none;
+  background: #111118;
+  color: white;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  transition: all 0.3s ease;
+}
+
+.btn-get-started:hover {
+  background: #ffd700;
+  color: black;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero h2 {
+    font-size: 1.3rem;
+  }
+}

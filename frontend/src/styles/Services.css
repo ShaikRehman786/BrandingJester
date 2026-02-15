@@ -1,0 +1,284 @@
+/* ================= SERVICES SECTION ================= */
+
+.service {
+  margin-top: 90px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 55px;
+
+  padding: 0 24px;
+}
+
+.services {
+  padding: 65px 20px;
+}
+
+.services-title {
+  margin-bottom: 30px;
+}
+
+
+/* ================= SECTION TITLE ================= */
+
+.headblock {
+  display: flex;
+  justify-content: center;
+}
+
+.head {
+  font-size: 3.2rem;
+  text-align: center;
+  font-family: "Jost", sans-serif;
+
+  color: white;
+  letter-spacing: 2px;
+}
+
+/* ================= CONTAINER ================= */
+
+.services-container {
+  width: 100%;
+}
+
+/* ================= GRID SYSTEM (FIXED) ================= */
+
+.service-list {
+  display: grid;
+
+  /* ✅ MAGIC LINE → Fixes width issues */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+
+  gap: 26px;
+
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+/* ================= SERVICE CARD ================= */
+
+.service-box {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+
+  border-radius: 22px;
+  padding: 26px;
+
+  border: 1px solid rgba(138, 43, 226, 0.35);
+
+  transition: all 0.35s ease;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+
+  /* ✅ Prevent weird stretching */
+  height: 100%;
+}
+
+/* HOVER EFFECT */
+
+.service-box:hover {
+  transform: translateY(-10px);
+
+  box-shadow:
+    0 22px 55px rgba(0, 0, 0, 0.55),
+    0 0 22px rgba(138, 43, 226, 0.35);
+
+  border-color: rgba(138, 43, 226, 0.9);
+}
+
+/* ================= TEXT CONTENT ================= */
+
+.service-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: white;
+
+  margin-bottom: 12px;
+}
+
+.service-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 18px;
+}
+
+/* ================= INCLUDES BOX ================= */
+
+.includes {
+  background: rgba(255, 255, 255, 0.03);
+
+  border-radius: 14px;
+  padding: 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.includes h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: white;
+
+  margin-bottom: 12px;
+}
+
+/* ================= FEATURE LIST ================= */
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.features-list li {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+
+  margin-bottom: 8px;
+  position: relative;
+
+  padding-left: 18px;
+}
+
+.features-list li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #ffd700;
+  font-size: 0.8rem;
+}
+
+/* ================= DOTS ================= */
+
+.dot-container {
+  display: flex;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.single-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.25);
+
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.service-box:hover .single-dot {
+  background: rgba(138, 43, 226, 0.9);
+  transform: scale(1.15);
+}
+
+/* ================= RESPONSIVE SYSTEM ================= */
+
+/* ---------- 1440px ---------- */
+
+@media (max-width: 1440px) {
+
+  .head {
+    font-size: 3rem;
+  }
+
+  .service-list {
+    max-width: 1220px;
+  }
+}
+
+/* ---------- 1240px → Laptops ---------- */
+
+@media (max-width: 1240px) {
+
+  .head {
+    font-size: 2.8rem;
+  }
+
+  .service-title {
+    font-size: 1.3rem;
+  }
+}
+
+/* ---------- 920px ---------- */
+
+@media (max-width: 920px) {
+
+  .head {
+    font-size: 2.4rem;
+  }
+
+  .service {
+    gap: 45px;
+  }
+}
+
+/* ---------- 768px ---------- */
+
+@media (max-width: 768px) {
+
+  .service {
+    padding: 0 18px;
+    gap: 40px;
+  }
+
+  .head {
+    font-size: 2.1rem;
+  }
+
+  .service-box {
+    padding: 22px;
+  }
+}
+
+/* ---------- 568px ---------- */
+
+@media (max-width: 568px) {
+
+  .head {
+    font-size: 1.9rem;
+  }
+
+  .service-title {
+    font-size: 1.15rem;
+  }
+
+  .service-description {
+    font-size: 0.9rem;
+  }
+}
+
+/* ---------- 480px ---------- */
+
+@media (max-width: 480px) {
+
+  .service {
+    padding: 0 14px;
+  }
+
+  .includes {
+    padding: 14px;
+  }
+}
+
+/* ---------- 360px ---------- */
+
+@media (max-width: 360px) {
+
+  .head {
+    font-size: 1.6rem;
+  }
+
+  .service-box {
+    padding: 18px;
+  }
+
+  .features-list li {
+    font-size: 0.85rem;
+  }
+}
