@@ -39,3 +39,115 @@ section {
 .clients-logos {
   margin-bottom: 25px;
 }
+
+
+
+
+/* ===================================================== */
+/* 🚀 GLOBAL PERFORMANCE SYSTEM */
+/* ===================================================== */
+
+/* ---------- Tablets ---------- */
+
+@media (max-width: 1024px) {
+
+  /* Reduce blur intensity */
+  header,
+  .team-card,
+  .faq-item,
+  .contact-block,
+  .portfolio-item {
+    backdrop-filter: blur(10px);
+  }
+
+  /* Reduce glow strength */
+  header,
+  .team-card,
+  .faq-item,
+  .portfolio-item {
+    box-shadow:
+      0 10px 30px rgba(0,0,0,0.6);
+  }
+
+  /* Slow transitions slightly */
+  * {
+    transition-duration: 0.3s;
+  }
+}
+
+
+/* ---------- Mobiles ---------- */
+
+@media (max-width: 768px) {
+
+  /* ⭐ Disable expensive GPU effects */
+  header,
+  .team-card,
+  .faq-item,
+  .contact-block,
+  .portfolio-item {
+    backdrop-filter: none !important;
+  }
+
+  /* ⭐ Reduce ALL glow shadows */
+  header,
+  .team-card,
+  .faq-item,
+  .contact-block,
+  .portfolio-item,
+  .btn-get-started {
+    box-shadow:
+      0 6px 18px rgba(0,0,0,0.45) !important;
+  }
+
+  /* ⭐ Disable heavy animated layers */
+  header::before,
+  header::after,
+  .hero::before,
+  .hero::after,
+  .team-card::before,
+  .portfolio-item::before {
+    animation: none !important;
+    filter: none !important;
+    opacity: 0.25;
+  }
+
+  /* ⭐ Kill repaint-heavy hover transforms */
+  header:hover,
+  .team-card:hover,
+  .portfolio-item:hover {
+    transform: none !important;
+  }
+
+  /* ⭐ Make interactions instant */
+  * {
+    transition-duration: 0.2s !important;
+  }
+
+  /* ⭐ FAQ Lag Fix */
+  .faq-answer {
+    animation: none !important;
+  }
+}
+
+
+/* ---------- Small / Low-End Phones ---------- */
+
+@media (max-width: 480px) {
+
+  /* Ultra-light mode */
+  header::before,
+  .hero::before,
+  .team-section::before,
+  .portfolio::before {
+    display: none;
+  }
+
+  /* Further reduce shadows */
+  header,
+  .team-card,
+  .faq-item,
+  .portfolio-item {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+  }
+}
