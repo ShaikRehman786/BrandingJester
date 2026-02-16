@@ -10,11 +10,18 @@
   left: 0;
 
   z-index: 1000;
+  pointer-events: none;
+}
+
+.main header {
+  pointer-events: auto;
 }
 
 /* ================= HEADER CONTAINER ================= */
 
 header {
+  position: relative;
+
   display: flex;
   width: 100%;
   max-width: 1250px;
@@ -25,25 +32,76 @@ header {
   padding: 14px 38px;
 
   border-radius: 60px;
-  border: 1px solid rgb(255, 255, 255);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 
-  background: rgba(15, 15, 25, 0.55);
-  backdrop-filter: blur(18px);
+  background: rgba(8, 8, 15, 0.65);
+  backdrop-filter: blur(20px);
 
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.45),
+    inset 0 0 12px rgba(122, 92, 255, 0.08);
 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   font-weight: bold;
 
+  overflow: hidden;
+}
+
+/* Energy Glow Border */
+
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 60px;
+
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(0, 255, 208, 0.35),
+    rgba(122, 92, 255, 0.35),
+    transparent 80%
+  );
+
+  opacity: 0.35;
+  filter: blur(18px);
+  z-index: -1;
+}
+
+/* Moving Energy Sweep */
+
+header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -40%;
+  width: 35%;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #00ffd0,
+    #7a5cff,
+    transparent
+  );
+
+  filter: blur(1px);
+  animation: energySweep 6s linear infinite;
+}
+
+@keyframes energySweep {
+  0% { left: -40%; }
+  100% { left: 120%; }
 }
 
 header:hover {
   transform: translateY(-1px);
-  font-weight: 700;
 
+  box-shadow:
+    0 12px 50px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(122, 92, 255, 0.18);
 }
-
-/* ================= LOGO ================= */
 
 /* ================= LOGO ================= */
 
@@ -51,8 +109,6 @@ header:hover {
   display: flex;
   align-items: center;
 }
-
-/* Logo Container */
 
 .logo-square {
   width: 85px;
@@ -63,26 +119,42 @@ header:hover {
   align-items: center;
   justify-content: center;
 
-  overflow: hidden;  
-  flex-shrink: 0;    
+  overflow: hidden;
+  flex-shrink: 0;
+
+  position: relative;
 }
 
-/* Logo Image */
+/* Logo Glow Aura */
+
+.logo-square::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 208, 0.35),
+    transparent 65%
+  );
+
+  opacity: 0.25;
+  filter: blur(12px);
+  z-index: -1;
+}
 
 .logo-square img {
   width: 100%;
   height: 100%;
-  object-fit: contain; 
+  object-fit: contain;
 
-  transition: transform 0.35s ease;
+  transition: transform 0.35s ease, filter 0.35s ease;
 }
-
-/* Premium Hover Micro Interaction */
 
 .logo-square:hover img {
-  transform: scale(1.05);
+  transform: scale(1.06);
+  filter: drop-shadow(0 0 12px rgba(0, 255, 208, 0.45));
 }
-
 
 /* ================= NAVIGATION ================= */
 
@@ -96,25 +168,76 @@ header:hover {
   text-decoration: none;
   color: white;
   font-size: 1rem;
-  opacity: 0.75;
+  opacity: 0.7;
 
-  transition: opacity 0.25s ease;
+  position: relative;
+  transition: 0.35s ease;
+}
+
+.subnav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+
+  width: 0%;
+  height: 1px;
+
+  background: linear-gradient(90deg, #00ffd0, #7a5cff);
+  transition: 0.35s ease;
+
+  box-shadow: 0 0 12px rgba(122, 92, 255, 0.6);
 }
 
 .subnav a:hover {
   opacity: 1;
+  color: #00ffd0;
+  text-shadow: 0 0 10px rgba(0, 255, 208, 0.6);
 }
 
-/* ================= CTA BUTTONS ================= */
+.subnav a:hover::after {
+  width: 100%;
+}
+
+/* ================= CTA BUTTON ================= */
 
 .cta-buttons {
   display: flex;
   gap: 18px;
 
-  background-color: #ffd700;
+  background: linear-gradient(90deg, #00ffd0, #7a5cff);
   padding: 10px 22px;
 
   border-radius: 30px;
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer Sweep */
+
+.cta-buttons::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.35),
+    transparent 80%
+  );
+
+  transform: translateX(-120%);
+  transition: 0.7s;
+}
+
+.cta-buttons:hover::before {
+  transform: translateX(120%);
+}
+
+.cta-buttons:hover {
+  box-shadow: 0 0 25px rgba(122, 92, 255, 0.45);
 }
 
 .cta-buttons a {
@@ -123,11 +246,10 @@ header:hover {
   font-weight: 600;
   font-size: 0.95rem;
 
-  transition: transform 0.25s ease, color 0.25s ease;
+  transition: transform 0.25s ease;
 }
 
 .cta-buttons a:hover {
-  color: #333;
   transform: scale(1.05);
 }
 
@@ -137,16 +259,17 @@ header:hover {
   display: none;
   font-size: 1.9rem;
   cursor: pointer;
-  color: white;
+  color: #00ffd0;
 
   transition: transform 0.25s ease;
+  text-shadow: 0 0 12px rgba(0, 255, 208, 0.6);
 }
 
 .menu-toggle:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
-/* ================= MOBILE MENU PANEL ================= */
+/* ================= MOBILE MENU ================= */
 
 .mobile-menu {
   position: fixed;
@@ -156,8 +279,8 @@ header:hover {
   width: 280px;
   height: 100vh;
 
-  background: rgba(10, 10, 20, 0.96);
-  backdrop-filter: blur(20px);
+  background: rgba(5, 5, 12, 0.96);
+  backdrop-filter: blur(24px);
 
   display: flex;
   flex-direction: column;
@@ -166,8 +289,20 @@ header:hover {
   gap: 26px;
 
   transition: right 0.35s ease;
-
   z-index: 999;
+}
+
+.mobile-menu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 2px;
+  height: 100%;
+
+  background: linear-gradient(180deg, #00ffd0, #7a5cff);
+  box-shadow: 0 0 18px rgba(122, 92, 255, 0.5);
 }
 
 .mobile-menu a {
@@ -176,34 +311,33 @@ header:hover {
   font-size: 1.05rem;
   opacity: 0.7;
 
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition: 0.3s ease;
 }
 
 .mobile-menu a:hover {
   opacity: 1;
+  color: #00ffd0;
   transform: translateX(6px);
+  text-shadow: 0 0 10px rgba(0, 255, 208, 0.6);
 }
-
-/* ACTIVE MENU */
 
 .mobile-menu.active {
   right: 0;
 }
 
-/* ================= BODY OFFSET (CRITICAL) ================= */
+/* ================= BODY OFFSET ================= */
 
 body {
   padding-top: 115px;
+  background: #050505;
 }
 
-/* ================= RESPONSIVE BREAKPOINTS ================= */
-
-/* ---------- 1440px ---------- */
+/* ================= RESPONSIVE SYSTEM ================= */
 
 @media (max-width: 1440px) {
-
   header {
     max-width: 1180px;
+    border-radius: 52px;
   }
 
   .subnav ul {
@@ -216,22 +350,15 @@ body {
   }
 }
 
-/* ---------- 1240px ---------- */
-
 @media (max-width: 1240px) {
-
   header {
     max-width: 1000px;
     padding: 13px 30px;
+    border-radius: 46px;
   }
 
   .subnav ul {
     gap: 34px;
-  }
-
-  .subnav a {
-    font-size: 1.2rem;
-    font-weight: bold;
   }
 
   .logo-square {
@@ -240,70 +367,51 @@ body {
   }
 }
 
-/* ---------- 1080px ---------- */
-
 @media (max-width: 1080px) {
-
   header {
     max-width: 900px;
+    border-radius: 40px;
   }
 
   .subnav ul {
     gap: 26px;
   }
 
-  .subnav a {
-    font-size: 0.9rem;
-  }
-
   .logo-square {
     width: 62px;
     height: 62px;
   }
-
-  .cta-buttons {
-    padding: 8px 18px;
-  }
 }
 
-/* ---------- 920px ---------- */
-
 @media (max-width: 920px) {
-
   header {
-    border-radius: 38px;
+    border-radius: 34px;
     padding: 10px 22px;
-  }
-
-  .subnav ul {
-    gap: 22px;
-  }
-
-  .subnav a {
-    font-size: 0.85rem;
   }
 
   .logo-square {
     width: 55px;
     height: 55px;
   }
+
+  header::before {
+    opacity: 0.25;
+    filter: blur(14px);
+  }
 }
 
-/* ---------- 768px (NAV SWITCH) ---------- */
-
 @media (max-width: 768px) {
-
   .subnav,
   .cta-buttons {
-    display: none;  
+    display: none;
   }
 
   .menu-toggle {
-    display: block;  
+    display: block;
   }
 
   header {
-    border-radius: 34px;
+    border-radius: 30px;
     padding: 10px 20px;
   }
 
@@ -312,50 +420,36 @@ body {
     height: 52px;
   }
 
+  header::before {
+    opacity: 0.18;
+    filter: blur(10px);
+  }
+
+  header::after {
+    height: 1px;
+  }
+
   body {
     padding-top: 95px;
   }
 }
 
-/* ---------- 568px ---------- */
-
-@media (max-width: 568px) {
-
+@media (max-width: 480px) {
   header {
-    border-radius: 28px;
+    border-radius: 22px;
     padding: 9px 16px;
   }
-
-  .logo-square {
-    width: 48px;
-    height: 48px;
-  }
-}
-
-/* ---------- 480px ---------- */
-
-@media (max-width: 480px) {
 
   .logo-square {
     width: 44px;
     height: 44px;
   }
 
+  header::before {
+    opacity: 0.12;
+  }
+
   .mobile-menu {
     width: 100%;
-  }
-}
-
-/* ---------- 360px ---------- */
-
-@media (max-width: 360px) {
-
-  header {
-    padding: 8px 10px;
-  }
-
-  .logo-square {
-    width: 40px;
-    height: 40px;
   }
 }

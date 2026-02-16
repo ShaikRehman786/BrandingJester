@@ -22,12 +22,16 @@ function Pricing() {
   return (
     <section className="pricing-section" id="pricing">
 
-      <h2 className="section-title">Get An Instant Quotation Now</h2>
+      <h2 className="section-title">
+        Get An Instant Quotation Now
+      </h2>
 
       <div className="pricing-grid">
 
         {/* CARD 1 */}
         <div className="price-card">
+
+          <div className="card-glow"></div>
 
           <div className="card-header">
             <h3>Website Redesign Cost Calculator</h3>
@@ -74,6 +78,8 @@ function Pricing() {
 
         {/* CARD 2 */}
         <div className="price-card">
+
+          <div className="card-glow"></div>
 
           <div className="card-header">
             <h3>Custom Website Development</h3>

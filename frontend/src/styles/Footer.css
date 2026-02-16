@@ -1,12 +1,43 @@
 /* ================= FOOTER ================= */
 
 .brand-footer {
-  margin-top: 120px;
-  background: #07070c;
+  margin-top: 140px;
+  position: relative;
+  background: #050505;
 
-  border-top: 2px solid #ffd700;   /* Yellow Accent Line */
+  padding: 85px 24px 30px;
+  overflow: hidden;
+}
 
-  padding: 70px 24px 30px;
+/* ================= VFX BACKGROUND ================= */
+
+.brand-footer::before {
+  content: "";
+  position: absolute;
+  inset: -250px;
+
+  background:
+    radial-gradient(circle at 10% 10%, rgba(0, 255, 208, 0.06), transparent 40%),
+    radial-gradient(circle at 90% 0%, rgba(122, 92, 255, 0.06), transparent 45%);
+
+  filter: blur(90px);
+  z-index: 0;
+}
+
+/* Neon Top Energy Line */
+
+.brand-footer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+
+  background: linear-gradient(90deg, #00ffd0, #7a5cff);
+
+  box-shadow:
+    0 0 18px rgba(122, 92, 255, 0.45);
 }
 
 /* ================= CONTAINER ================= */
@@ -17,31 +48,37 @@
 
   display: grid;
   grid-template-columns: 1.2fr 0.8fr 1fr;
-  gap: 60px;
+  gap: 65px;
 
   align-items: flex-start;
+
+  position: relative;
+  z-index: 1;
+}
+
+/* ================= LOGO ================= */
+
+.footer-logo {
+  width: 72px;
+  height: 72px;
+
+  background-image: url("../components/images/designs & logos/brandingjester_logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  filter: drop-shadow(0 0 12px rgba(0, 255, 208, 0.35));
 }
 
 /* ================= ABOUT ================= */
 
 .footer-about p {
   color: rgba(255, 255, 255, 0.6);
-  line-height: 1.7;
+  line-height: 1.75;
   font-size: 0.95rem;
-  margin: 18px 0 26px;
-  max-width: 360px;
-}
 
-/* Logo */
-
-.footer-logo {
-  width: 70px;
-  height: 70px;
-
-  background-image: url("../components/images/designs & logos/brandingjester_logo.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  margin: 20px 0 28px;
+  max-width: 380px;
 }
 
 /* ================= SOCIAL ================= */
@@ -52,40 +89,76 @@
 }
 
 .footer-social a {
-  width: 42px;
-  height: 42px;
+  position: relative;
+
+  width: 44px;
+  height: 44px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border-radius: 12px;
+  border-radius: 14px;
 
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(12, 12, 22, 0.85);
+  border: 1px solid rgba(122, 92, 255, 0.25);
 
   color: white;
   font-size: 1.1rem;
 
-  transition: all 0.3s ease;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border 0.35s ease;
+}
+
+/* Glow Layer */
+
+.footer-social a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(0, 255, 208, 0.45),
+    rgba(122, 92, 255, 0.45),
+    transparent 80%
+  );
+
+  opacity: 0;
+  filter: blur(16px);
+  transition: 0.35s ease;
+  z-index: -1;
 }
 
 .footer-social a:hover {
-  background: #ffd700;
-  color: black;
-  transform: translateY(-3px);
+  transform: translateY(-4px) scale(1.08);
+
+  box-shadow:
+    0 0 22px rgba(122, 92, 255, 0.35);
+
+  border-color: rgba(122, 92, 255, 0.85);
 }
 
-/* ================= LINKS ================= */
+.footer-social a:hover::before {
+  opacity: 0.75;
+}
+
+/* ================= HEADINGS ================= */
 
 .footer-links h3,
 .footer-contact h3 {
   color: white;
   font-size: 1.2rem;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
+
+  text-shadow: 0 0 12px rgba(0, 255, 208, 0.12);
 }
 
-/* Links */
+/* ================= LINKS ================= */
 
 .footer-links ul {
   list-style: none;
@@ -94,7 +167,7 @@
 }
 
 .footer-links li {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .footer-links a {
@@ -102,12 +175,14 @@
   color: rgba(255, 255, 255, 0.65);
   font-size: 0.95rem;
 
-  transition: all 0.25s ease;
+  transition: 0.35s ease;
 }
 
 .footer-links a:hover {
-  color: #ffd700;
-  transform: translateX(4px);
+  color: #00ffd0;
+  transform: translateX(5px);
+
+  text-shadow: 0 0 10px rgba(0, 255, 208, 0.35);
 }
 
 /* ================= CONTACT ================= */
@@ -121,49 +196,44 @@
   align-items: flex-start;
   gap: 10px;
 
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 /* Icons */
 
 .footer-contact i {
-  color: #ffd700;
-  margin-top: 3px;
+  color: #00ffd0;
+  margin-top: 4px;
+
+  text-shadow: 0 0 8px rgba(0, 255, 208, 0.35);
 }
 
 /* ================= BOTTOM ================= */
 
 .footer-bottom {
-  margin-top: 55px;
-  padding-top: 22px;
+  margin-top: 65px;
+  padding-top: 24px;
 
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-
   text-align: center;
 }
 
 .footer-bottom p {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.35);
   font-size: 0.9rem;
 }
 
-/* ================= RESPONSIVE ================= */
+/* ===================================================== */
+/* ================= RESPONSIVE VFX ==================== */
+/* ===================================================== */
 
-/* ---------- Large Screens ---------- */
-
-@media (max-width: 1440px) {
-  .footer-container {
-    gap: 50px;
-  }
-}
-
-/* ---------- Laptops ---------- */
+/* ---------- 1080px ---------- */
 
 @media (max-width: 1080px) {
 
   .footer-container {
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: 45px;
   }
 
   .footer-contact {
@@ -171,22 +241,22 @@
   }
 }
 
-/* ---------- Tablets ---------- */
+/* ---------- 768px ---------- */
 
 @media (max-width: 768px) {
 
   .brand-footer {
-    padding: 55px 18px 26px;
+    padding: 65px 18px 26px;
   }
 
   .footer-container {
     grid-template-columns: 1fr;
-    gap: 38px;
+    gap: 40px;
     text-align: center;
   }
 
   .footer-about p {
-    margin: 12px auto 22px;
+    margin: 12px auto 24px;
   }
 
   .footer-social {
@@ -198,13 +268,13 @@
   }
 }
 
-/* ---------- Mobile ---------- */
+/* ---------- 480px ---------- */
 
 @media (max-width: 480px) {
 
   .footer-social a {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     font-size: 1rem;
   }
 
@@ -213,6 +283,3 @@
     font-size: 1.05rem;
   }
 }
-
-
-

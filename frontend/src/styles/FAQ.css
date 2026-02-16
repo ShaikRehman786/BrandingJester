@@ -2,28 +2,52 @@
 
 .faq-section {
   width: 100%;
-  padding: 110px 20px;
-  max-width: 900px;
+  padding: 120px 24px;
+  max-width: 950px;
   margin: 0 auto;
+  position: relative;
+  background: #050505;
+}
+
+/* ================= VFX BACKGROUND ================= */
+
+.faq-section::before {
+  content: "";
+  position: absolute;
+  inset: -200px;
+
+  background:
+    radial-gradient(circle at 10% 20%, rgba(0, 255, 208, 0.05), transparent 40%),
+    radial-gradient(circle at 90% 10%, rgba(122, 92, 255, 0.05), transparent 45%);
+
+  filter: blur(80px);
+  z-index: 0;
 }
 
 /* ================= HEADER ================= */
 
 .faq-header {
   text-align: center;
-  margin-bottom: 55px;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 1;
 }
 
 .faq-header h1 {
   font-size: 2.4rem;
-  color: white;
-  margin-bottom: 12px;
+
+  background: linear-gradient(90deg, #ffffff, #00ffd0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  margin-bottom: 14px;
+  text-shadow: 0 0 18px rgba(0, 255, 208, 0.18);
 }
 
 .faq-header p {
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.6);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 /* ================= FAQ LIST ================= */
@@ -31,34 +55,74 @@
 .faq-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
+  position: relative;
+  z-index: 1;
 }
 
 /* ================= FAQ ITEM ================= */
 
 .faq-item {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(14px);
+  position: relative;
 
-  border-radius: 18px;
+  background: rgba(12, 12, 22, 0.75);
+  backdrop-filter: blur(18px);
+
+  border-radius: 20px;
   overflow: hidden;
 
-  border: 1px solid rgba(138, 43, 226, 0.35);
+  border: 1px solid rgba(122, 92, 255, 0.25);
 
-  transition: all 0.3s ease;
-}
-
-/* PREMIUM HOVER */
-
-.faq-item:hover {
-  border-color: rgba(138, 43, 226, 0.85);
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease,
+    border 0.45s ease;
 
   box-shadow:
-    0 10px 35px rgba(0, 0, 0, 0.45),
-    0 0 18px rgba(138, 43, 226, 0.2);
+    0 12px 35px rgba(0, 0, 0, 0.65);
 }
 
-/* ================= QUESTION BUTTON ================= */
+/* Energy Border */
+
+.faq-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(0, 255, 208, 0.45),
+    rgba(122, 92, 255, 0.45),
+    transparent 80%
+  );
+
+  opacity: 0;
+  filter: blur(18px);
+  transition: 0.45s ease;
+  z-index: -1;
+
+  pointer-events: none;
+}
+
+/* Hover */
+
+.faq-item:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.85),
+    0 0 25px rgba(122, 92, 255, 0.18);
+
+  border-color: rgba(122, 92, 255, 0.85);
+}
+
+.faq-item:hover::before {
+  opacity: 0.55;
+}
+
+/* ================= QUESTION ================= */
 
 .faq-question {
   width: 100%;
@@ -69,70 +133,70 @@
   justify-content: space-between;
   align-items: center;
 
-  padding: 18px 22px;
+  padding: 20px 24px;
 
   color: white;
-  font-size: 0.98rem;
+  font-size: 1rem;
   font-weight: 500;
 
   cursor: pointer;
 }
 
-/* REMOVE DEFAULT BUTTON STYLES */
-
-.faq-question:focus {
-  outline: none;
+.faq-question span {
+  text-align: left;
 }
 
 /* ================= TOGGLE ICON ================= */
 
 .toggle-icon {
-  font-size: 1.2rem;
-  color: #ffd700;
+  font-size: 1.4rem;
+  color: #00ffd0;
 
-  transition: transform 0.25s ease;
+  transition: 0.35s ease;
+  text-shadow: 0 0 12px rgba(0, 255, 208, 0.35);
 }
 
-/* OPTIONAL ROTATION EFFECT */
-
-.faq-item:hover .toggle-icon {
-  transform: scale(1.1);
+.faq-item.active .toggle-icon {
+  transform: rotate(180deg) scale(1.1);
 }
 
-/* ================= ANSWER ================= */
+/* ================= ANSWER (CINEMATIC ANIMATION) ================= */
 
 .faq-answer {
-  padding: 0 22px 18px;
-  animation: fadeDown 0.25s ease;
+  max-height: 0;
+  opacity: 0;
+
+  overflow: hidden;
+
+  transition:
+    max-height 0.45s ease,
+    opacity 0.35s ease,
+    padding 0.35s ease;
+
+  padding: 0 24px;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+  opacity: 1;
+
+  padding: 0 24px 22px;
 }
 
 .faq-answer p {
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.65);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
-/* ================= ANIMATION ================= */
-
-@keyframes fadeDown {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ================= RESPONSIVE ================= */
-
-/* ---------- 768px ---------- */
+/* ===================================================== */
+/* ================= RESPONSIVE VFX ==================== */
+/* ===================================================== */
 
 @media (max-width: 768px) {
 
   .faq-section {
-    padding: 85px 16px;
+    padding: 90px 18px;
   }
 
   .faq-header h1 {
@@ -141,15 +205,17 @@
 
   .faq-question {
     font-size: 0.95rem;
-    padding: 16px 18px;
+    padding: 18px;
   }
 
-  .faq-answer {
-    padding: 0 18px 16px;
+  .faq-item {
+    backdrop-filter: blur(12px);
+  }
+
+  .faq-answer p {
+    font-size: 0.9rem;
   }
 }
-
-/* ---------- 480px ---------- */
 
 @media (max-width: 480px) {
 
@@ -164,28 +230,4 @@
   .faq-question {
     font-size: 0.9rem;
   }
-
-  .faq-answer p {
-    font-size: 0.88rem;
-  }
-}
-
-/* ---------- 360px ---------- */
-
-@media (max-width: 360px) {
-
-  .faq-question {
-    font-size: 0.85rem;
-  }
-
-  .toggle-icon {
-    font-size: 1rem;
-  }
-}
-
-
-
-
-.faq-section {
-  padding: 65px 20px;
 }

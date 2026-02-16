@@ -23,9 +23,11 @@ function FAQ() {
 
       <div className="faq-list">
         {faqData.map((faq, index) => (
-          <div key={index} className="faq-item">
+          <div
+            key={index}
+            className={`faq-item ${activeIndex === index ? "active" : ""}`}
+          >
 
-            {/* QUESTION */}
             <button
               className="faq-question"
               onClick={() => toggleFAQ(index)}
@@ -37,13 +39,7 @@ function FAQ() {
               </div>
             </button>
 
-            {/* ANSWER */}
-            <div
-              className="faq-answer"
-              style={{
-                display: activeIndex === index ? "block" : "none"
-              }}
-            >
+            <div className="faq-answer">
               <p>{faq.answer}</p>
             </div>
 

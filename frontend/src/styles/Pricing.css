@@ -1,55 +1,147 @@
 /* ================= PRICING SECTION ================= */
 
 .pricing-section {
-  padding: 110px 24px;
+  padding: 120px 24px;
   text-align: center;
+  position: relative;
+  background: #050505;
 }
 
-/* TITLE */
+/* Ambient Glow */
+
+.pricing-section::before {
+  content: "";
+  position: absolute;
+  inset: -200px;
+
+  background:
+    radial-gradient(circle at 10% 20%, rgba(0, 255, 208, 0.05), transparent 40%),
+    radial-gradient(circle at 90% 10%, rgba(122, 92, 255, 0.05), transparent 45%);
+
+  filter: blur(70px);
+  z-index: 0;
+}
+
+/* ================= TITLE ================= */
 
 .section-title {
-  font-size: 2.4rem;
-  color: white;
-  margin-bottom: 60px;
+  font-size: 2.5rem;
+
+  background: linear-gradient(90deg, #ffffff, #00ffd0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  margin-bottom: 70px;
+  text-shadow: 0 0 18px rgba(0, 255, 208, 0.15);
+
+  position: relative;
+  z-index: 1;
 }
 
-/* GRID */
+/* ================= GRID ================= */
 
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 30px;
+  gap: 34px;
 
   max-width: 1100px;
   margin: 0 auto;
+
+  position: relative;
+  z-index: 1;
 }
 
-/* CARD */
+/* ================= CARD ================= */
 
 .price-card {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(16px);
+  position: relative;
 
-  border-radius: 24px;
+  background: rgba(12, 12, 22, 0.75);
+  backdrop-filter: blur(18px);
+
+  border-radius: 26px;
   overflow: hidden;
 
-  border: 1px solid rgba(138, 43, 226, 0.35);
+  border: 1px solid rgba(122, 92, 255, 0.25);
 
-  transition: all 0.35s ease;
+  transition:
+    transform 0.5s ease,
+    box-shadow 0.5s ease,
+    border 0.5s ease;
 
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.45);
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.75),
+    0 0 35px rgba(122, 92, 255, 0.12);
 }
+
+/* Glow Layer */
+
+.card-glow {
+  position: absolute;
+  inset: -70%;
+
+  background: radial-gradient(
+    circle,
+    rgba(122, 92, 255, 0.15),
+    transparent 60%
+  );
+
+  opacity: 0;
+  transition: 0.5s ease;
+
+  pointer-events: none;   /* ⭐ CRITICAL FIX */
+}
+
+/* Energy Border */
+
+.price-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 26px;
+
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(0, 255, 208, 0.35),
+    rgba(122, 92, 255, 0.35),
+    transparent 80%
+  );
+
+  opacity: 0;
+  filter: blur(18px);
+  transition: 0.5s ease;
+  z-index: -1;
+
+  pointer-events: none;   /* ⭐ CRITICAL FIX */
+}
+
+/* Hover Motion */
 
 .price-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(138, 43, 226, 0.9);
+  transform: translateY(-16px) scale(1.03);
+
+  box-shadow:
+    0 40px 110px rgba(0, 0, 0, 0.95),
+    0 0 60px rgba(122, 92, 255, 0.35);
+
+  border-color: rgba(122, 92, 255, 0.85);
 }
 
-/* HEADER */
+.price-card:hover::before {
+  opacity: 0.65;
+}
+
+.price-card:hover .card-glow {
+  opacity: 1;
+}
+
+/* ================= HEADER ================= */
 
 .card-header {
-  background: rgb(252, 252, 0);
-  padding: 22px;
+  background: linear-gradient(90deg, #00ffd0, #7a5cff);
+  padding: 24px;
 }
 
 .card-header h3 {
@@ -57,49 +149,45 @@
   color: black;
 }
 
-/* BODY */
+/* ================= BODY ================= */
 
 .card-body {
-  padding: 28px;
+  padding: 30px;
 }
 
 /* PACKAGE LABEL */
 
 .choose-package {
-  background: white;
-  color: black;
+  background: rgba(255, 255, 255, 0.06);
+  color: white;
 
-  padding: 12px;
-  border-radius: 10px;
+  padding: 13px;
+  border-radius: 12px;
 
   font-size: 0.9rem;
-  margin-bottom: 22px;
+  margin-bottom: 26px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.choose-package:hover {
-  background: #8354d9;
-  color:white;
-  cursor: pointer;
-}
-
-/* BUTTONS */
+/* ================= BUTTONS ================= */
 
 .package-buttons {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .package-btn {
-  background: #0c0c14;
+  background: rgba(10, 10, 18, 0.9);
   color: white;
 
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 15px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
 
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.35s ease;
 }
 
 .package-btn:hover {
@@ -109,67 +197,146 @@
 /* ACTIVE BUTTON */
 
 .package-btn.active {
-  background: rgba(138, 43, 226, 0.25);
-  border-color: rgba(138, 43, 226, 0.9);
+  background: rgba(122, 92, 255, 0.25);
+  border-color: rgba(122, 92, 255, 0.85);
+
+  box-shadow: 0 0 22px rgba(122, 92, 255, 0.35);
 }
 
-/* PRICE */
+/* ================= PRICE ================= */
 
 .price-display {
-  margin-top: 24px;
+  margin-top: 28px;
 }
 
 .price-display span {
-  display: block;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 6px;
+  color: rgba(255, 255, 255, 0.55);
 }
 
 .price-display strong {
-  font-size: 1.9rem;
+  font-size: 2rem;
+  margin-left: 10px;
   color: white;
 }
 
-/* CONTACT BUTTON */
+/* ================= CONTACT BUTTON ================= */
 
 .contact-btn {
   display: block;
-  margin-top: 26px;
+  margin-top: 28px;
 
-  background: #5b5fff;
-  color: white;
+  background: linear-gradient(90deg, #00ffd0, #7a5cff);
+  color: black;
 
-  padding: 14px;
-  border-radius: 14px;
+  padding: 15px;
+  border-radius: 16px;
   text-decoration: none;
 
-  transition: all 0.3s ease;
+  font-weight: 600;
+  transition: 0.35s ease;
 }
 
 .contact-btn:hover {
   transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(122, 92, 255, 0.45);
 }
 
-/* ================= RESPONSIVE ================= */
+/* ================= RESPONSIVE ==================== */
+
+/* ---------- 1240px → Laptops ---------- */
+
+@media (max-width: 1240px) {
+
+  .price-card {
+    box-shadow:
+      0 18px 55px rgba(0, 0, 0, 0.65),
+      0 0 25px rgba(122, 92, 255, 0.10);
+  }
+
+  .price-card:hover {
+    box-shadow:
+      0 30px 85px rgba(0, 0, 0, 0.85),
+      0 0 45px rgba(122, 92, 255, 0.28);
+  }
+}
+
+/* ---------- 920px → Tablets ---------- */
+
+@media (max-width: 920px) {
+
+  .price-card {
+
+    backdrop-filter: blur(14px);
+
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.55);
+
+    border-radius: 22px;
+  }
+
+  .card-glow {
+    opacity: 0.35;
+  }
+
+  .price-card:hover {
+    transform: translateY(-10px) scale(1.02);
+  }
+}
+
+/* ---------- 768px → Mobile ---------- */
 
 @media (max-width: 768px) {
-
-  .section-title {
-    font-size: 1.9rem;
-  }
 
   .pricing-grid {
     grid-template-columns: 1fr;
   }
+
+  .price-card {
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+      0 10px 28px rgba(0, 0, 0, 0.55);
+
+    border-radius: 20px;
+  }
+
+  .card-glow,
+  .price-card::before {
+    opacity: 0.15;
+  }
+
+  .price-card:hover {
+    transform: translateY(-6px);
+  }
 }
+
+/* ---------- 480px → Small Phones ---------- */
 
 @media (max-width: 480px) {
 
   .pricing-section {
-    padding: 80px 14px;
+    padding: 75px 14px;
   }
 
-  .card-body {
-    padding: 22px;
+  .section-title {
+    font-size: 1.7rem;
+  }
+
+  .price-card {
+    backdrop-filter: blur(6px);
+  }
+}
+
+/* ---------- 360px ---------- */
+
+@media (max-width: 360px) {
+
+  .section-title {
+    font-size: 1.45rem;
+  }
+
+  .price-display strong {
+    font-size: 1.5rem;
   }
 }

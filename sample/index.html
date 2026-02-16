@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <section class="hero">
+  <div class="gradient-bg"></div>
+
+  <div class="hero-content">
+    <h1 class="hero-title">
+      Future of Digital Experience
+    </h1>
+
+    <p class="hero-subtitle">
+      Immersive interfaces powered by motion, depth, and cinematic design.
+    </p>
+
+    <div class="hero-buttons">
+      <button class="btn-primary">Get Started</button>
+      <button class="btn-secondary">View Work</button>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+<script>
+  gsap.from(".hero-title", {
+    y: 80,
+    opacity: 0,
+    duration: 1.2,
+    ease: "power3.out"
+  });
+
+  gsap.from(".hero-subtitle", {
+    y: 40,
+    opacity: 0,
+    duration: 1,
+    delay: 0.3,
+    ease: "power3.out"
+  });
+
+  gsap.from("button", {
+    scale: 0.8,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.15,
+    delay: 0.6,
+    ease: "back.out(1.7)"
+  });
+</script>
+
+
+</body>
+</html>
