@@ -1,3 +1,19 @@
+/* ================= GLOBAL SAFETY ================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;     /* ⭐ CRITICAL FIX */
+  margin: 0;
+  padding: 0;
+  background: #050505;
+}
+
 /* ================= MAIN HEADER WRAPPER ================= */
 
 .main {
@@ -9,7 +25,9 @@
   top: 20px;
   left: 0;
 
+  padding: 0 16px;        /* ⭐ Prevents edge touching */
   z-index: 1000;
+
   pointer-events: none;
 }
 
@@ -24,12 +42,12 @@ header {
 
   display: flex;
   width: 100%;
-  max-width: 1250px;
+  max-width: 1200px;      /* ⭐ MATCHES HERO */
 
   justify-content: space-between;
   align-items: center;
 
-  padding: 14px 38px;
+  padding: 14px 28px;
 
   border-radius: 60px;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -42,12 +60,11 @@ header {
     inset 0 0 12px rgba(122, 92, 255, 0.08);
 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  font-weight: bold;
 
   overflow: hidden;
 }
 
-/* Energy Glow Border */
+/* ================= ENERGY GLOW BORDER ================= */
 
 header::before {
   content: "";
@@ -68,7 +85,7 @@ header::before {
   z-index: -1;
 }
 
-/* Moving Energy Sweep */
+/* ================= ENERGY SWEEP ================= */
 
 header::after {
   content: "";
@@ -95,6 +112,8 @@ header::after {
   100% { left: 120%; }
 }
 
+/* ================= HOVER ================= */
+
 header:hover {
   transform: translateY(-1px);
 
@@ -105,42 +124,13 @@ header:hover {
 
 /* ================= LOGO ================= */
 
-.logo {
-  display: flex;
-  align-items: center;
-}
-
 .logo-square {
-  width: 85px;
-  height: 85px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   overflow: hidden;
   flex-shrink: 0;
-
-  position: relative;
-}
-
-/* Logo Glow Aura */
-
-.logo-square::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: radial-gradient(
-    circle,
-    rgba(0, 255, 208, 0.35),
-    transparent 65%
-  );
-
-  opacity: 0.25;
-  filter: blur(12px);
-  z-index: -1;
 }
 
 .logo-square img {
@@ -148,26 +138,27 @@ header:hover {
   height: 100%;
   object-fit: contain;
 
-  transition: transform 0.35s ease, filter 0.35s ease;
+  transition: transform 0.35s ease;
 }
 
 .logo-square:hover img {
-  transform: scale(1.06);
-  filter: drop-shadow(0 0 12px rgba(0, 255, 208, 0.45));
+  transform: scale(1.05);
 }
 
 /* ================= NAVIGATION ================= */
 
 .subnav ul {
   display: flex;
-  gap: 50px;
+  gap: 40px;
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .subnav a {
   text-decoration: none;
   color: white;
-  font-size: 1rem;
+  font-size: 0.95rem;
   opacity: 0.7;
 
   position: relative;
@@ -185,14 +176,11 @@ header:hover {
 
   background: linear-gradient(90deg, #00ffd0, #7a5cff);
   transition: 0.35s ease;
-
-  box-shadow: 0 0 12px rgba(122, 92, 255, 0.6);
 }
 
 .subnav a:hover {
   opacity: 1;
   color: #00ffd0;
-  text-shadow: 0 0 10px rgba(0, 255, 208, 0.6);
 }
 
 .subnav a:hover::after {
@@ -202,392 +190,25 @@ header:hover {
 /* ================= CTA BUTTON ================= */
 
 .cta-buttons {
-  display: flex;
-  gap: 18px;
-
   background: linear-gradient(90deg, #00ffd0, #7a5cff);
-  padding: 10px 22px;
-
+  padding: 9px 18px;
   border-radius: 30px;
-
-  position: relative;
-  overflow: hidden;
-}
-
-/* Shimmer Sweep */
-
-.cta-buttons::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: linear-gradient(
-    120deg,
-    transparent 20%,
-    rgba(255, 255, 255, 0.35),
-    transparent 80%
-  );
-
-  transform: translateX(-120%);
-  transition: 0.7s;
-}
-
-.cta-buttons:hover::before {
-  transform: translateX(120%);
-}
-
-.cta-buttons:hover {
-  box-shadow: 0 0 25px rgba(122, 92, 255, 0.45);
 }
 
 .cta-buttons a {
   text-decoration: none;
   color: black;
   font-weight: 600;
-  font-size: 0.95rem;
-
-  transition: transform 0.25s ease;
-}
-
-.cta-buttons a:hover {
-  transform: scale(1.05);
-}
-
-/* ================= HAMBURGER ================= */
-
-.menu-toggle {
-  display: none;
-  font-size: 1.9rem;
-  cursor: pointer;
-  color: #00ffd0;
-
-  transition: transform 0.25s ease;
-  text-shadow: 0 0 12px rgba(0, 255, 208, 0.6);
-}
-
-.menu-toggle:hover {
-  transform: scale(1.08);
-}
-
-/* ================= MOBILE MENU ================= */
-
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  right: -100%;
-
-  width: 280px;
-  height: 100vh;
-
-  background: rgba(5, 5, 12, 0.96);
-  backdrop-filter: blur(24px);
-
-  display: flex;
-  flex-direction: column;
-
-  padding: 110px 35px;
-  gap: 26px;
-
-  transition: right 0.35s ease;
-  z-index: 999;
-}
-
-.mobile-menu::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-
-  width: 2px;
-  height: 100%;
-
-  background: linear-gradient(180deg, #00ffd0, #7a5cff);
-  box-shadow: 0 0 18px rgba(122, 92, 255, 0.5);
-}
-
-.mobile-menu a {
-  text-decoration: none;
-  color: white;
-  font-size: 1.05rem;
-  opacity: 0.7;
-
-  transition: 0.3s ease;
-}
-
-.mobile-menu a:hover {
-  opacity: 1;
-  color: #00ffd0;
-  transform: translateX(6px);
-  text-shadow: 0 0 10px rgba(0, 255, 208, 0.6);
-}
-
-.mobile-menu.active {
-  right: 0;
-}
-
-/* ================= BODY OFFSET ================= */
-
-body {
-  padding-top: 115px;
-  background: #050505;
-}
-
-/* ================= RESPONSIVE SYSTEM ================= */
-
-@media (max-width: 1440px) {
-  header {
-    max-width: 1180px;
-    border-radius: 52px;
-  }
-
-  .subnav ul {
-    gap: 42px;
-  }
-
-  .logo-square {
-    width: 78px;
-    height: 78px;
-  }
-}
-
-@media (max-width: 1240px) {
-  header {
-    max-width: 1000px;
-    padding: 13px 30px;
-    border-radius: 46px;
-  }
-
-  .subnav ul {
-    gap: 34px;
-  }
-
-  .logo-square {
-    width: 70px;
-    height: 70px;
-  }
-}
-
-@media (max-width: 1080px) {
-  header {
-    max-width: 900px;
-    border-radius: 40px;
-  }
-
-  .subnav ul {
-    gap: 26px;
-  }
-
-  .logo-square {
-    width: 62px;
-    height: 62px;
-  }
-}
-
-@media (max-width: 920px) {
-  header {
-    border-radius: 34px;
-    padding: 10px 22px;
-  }
-
-  .logo-square {
-    width: 55px;
-    height: 55px;
-  }
-
-  header::before {
-    opacity: 0.25;
-    filter: blur(14px);
-  }
-}
-
-@media (max-width: 768px) {
-  .subnav,
-  .cta-buttons {
-    display: none;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  header {
-    border-radius: 30px;
-    padding: 10px 20px;
-  }
-
-  .logo-square {
-    width: 52px;
-    height: 52px;
-  }
-
-  header::before {
-    opacity: 0.18;
-    filter: blur(10px);
-  }
-
-  header::after {
-    height: 1px;
-  }
-
-  body {
-    padding-top: 95px;
-  }
-}
-
-@media (max-width: 480px) {
-  header {
-    border-radius: 22px;
-    padding: 9px 16px;
-  }
-
-  .logo-square {
-    width: 44px;
-    height: 44px;
-  }
-
-  header::before {
-    opacity: 0.12;
-  }
-
-  .mobile-menu {
-    width: 100%;
-  }
-}
-
-
-
-
-
-
-
-
-
-/* ================= GLOBAL SAFETY ================= */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-/* ================= WRAPPER ================= */
-
-.main {
-  position: fixed;
-  top: 14px;
-  left: 0;
-  width: 100%;
-
-  display: flex;
-  justify-content: center;
-
-  padding: 0 14px;
-  z-index: 1000;
-  pointer-events: none;
-}
-
-.main header {
-  pointer-events: auto;
-}
-
-/* ================= HEADER ================= */
-
-header {
-  width: 100%;
-  max-width: 1200px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 14px 18px;   /* ⭐ CRITICAL FIX */
-  min-height: 64px;     /* ⭐ LOCKS HEIGHT */
-
-  border-radius: 28px;  /* ⭐ FIXED */
-  border: 1px solid rgba(255, 255, 255, 0.12);
-
-  background: rgba(10, 10, 18, 0.82);
-  backdrop-filter: blur(18px);
-
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.55);
-
-  position: relative;
-  overflow: hidden;
-}
-
-/* ================= ENERGY GLOW ================= */
-
-header::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: linear-gradient(
-    120deg,
-    transparent 25%,
-    rgba(0, 255, 208, 0.35),
-    rgba(122, 92, 255, 0.35),
-    transparent 75%
-  );
-
-  opacity: 0.35;
-  filter: blur(14px);
-  pointer-events: none;
-}
-
-/* ================= LOGO ================= */
-
-.logo-square {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.logo-square img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-/* ================= NAVIGATION ================= */
-
-.subnav ul {
-  display: flex;
-  gap: 22px;
-  list-style: none;
-}
-
-.subnav a {
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.75);
   font-size: 0.9rem;
 }
 
-/* ================= CTA ================= */
-
-.cta-buttons {
-  background: linear-gradient(90deg, #00ffd0, #7a5cff);
-  padding: 7px 14px;
-  border-radius: 18px;
-}
-
-.cta-buttons a {
-  text-decoration: none;
-  color: black;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
 /* ================= HAMBURGER ================= */
 
 .menu-toggle {
   display: none;
-  font-size: 1.4rem;
-  color: #00ffd0;
+  font-size: 1.6rem;
   cursor: pointer;
+  color: #00ffd0;
 }
 
 /* ================= MOBILE MENU ================= */
@@ -605,9 +226,9 @@ header::before {
 
   display: flex;
   flex-direction: column;
-  gap: 26px;
+  gap: 28px;
 
-  padding: 110px 28px;
+  padding: 110px 32px;
 
   transition: right 0.35s ease;
   z-index: 999;
@@ -617,16 +238,20 @@ header::before {
   right: 0;
 }
 
+.mobile-menu a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.1rem;
+  opacity: 0.7;
+}
+
 /* ================= BODY OFFSET ================= */
 
 body {
-  padding-top: 86px;   /* ⭐ MATCHES HEADER */
-  background: #050505;
+  padding-top: 95px;
 }
 
-/* ===================================================== */
-/* ================= RESPONSIVE ======================== */
-/* ===================================================== */
+/* ================= RESPONSIVE ================= */
 
 @media (max-width: 920px) {
 
@@ -640,20 +265,25 @@ body {
   }
 
   header {
-    padding: 12px 16px;
-    min-height: 60px;
+    padding: 12px 18px;
+    border-radius: 40px;
+  }
+
+  .logo-square {
+    width: 52px;
+    height: 52px;
   }
 }
 
 @media (max-width: 480px) {
 
   header {
+    border-radius: 26px;
     padding: 11px 14px;
-    border-radius: 22px;
   }
 
   .logo-square {
-    width: 38px;
-    height: 38px;
+    width: 46px;
+    height: 46px;
   }
 }
