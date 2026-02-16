@@ -1,10 +1,13 @@
 /* ================= HERO ================= */
 
 .hero {
-  text-align: center;
+  width: 100%;                 /* Prevent weird compression */
   max-width: 1200px;
-  padding: 110px 20px 50px;
+  margin: 0 auto;              /* ⭐ CRITICAL FIX – centers hero */
+  text-align: center;
+  padding: 140px 20px 80px;    /* Improved vertical rhythm */
 }
+
 
 /* ================= HEADLINES ================= */
 
@@ -21,13 +24,17 @@
   margin-bottom: 22px;
 }
 
+
 /* ================= ROTATING TEXT ================= */
 
 .rotating-text {
   display: inline-block;
   position: relative;
   color: #ffd700;
+  min-width: 180px;            /* ⭐ Prevents sideways jumping */
+  text-align: center;
 }
+
 
 /* ===== TOP TEXT (SLIDE UP) ===== */
 
@@ -61,6 +68,7 @@
   }
 }
 
+
 /* ===== SECOND TEXT (SLIDE DOWN) ===== */
 
 .rotating-text.down.enter {
@@ -93,6 +101,7 @@
   }
 }
 
+
 /* ================= DESCRIPTION ================= */
 
 .hero p {
@@ -102,6 +111,7 @@
   max-width: 880px;
   margin: 0 auto;
 }
+
 
 /* ================= TAGS ================= */
 
@@ -125,6 +135,7 @@
   color: white;
 }
 
+
 /* ================= CTA ================= */
 
 .cta-section {
@@ -147,14 +158,23 @@
   color: black;
 }
 
+
 /* ================= RESPONSIVE ================= */
 
 @media (max-width: 768px) {
+  .hero {
+    padding: 110px 20px 60px;
+  }
+
   .hero h1 {
     font-size: 2.2rem;
   }
 
   .hero h2 {
     font-size: 1.3rem;
+  }
+
+  .rotating-text {
+    min-width: 140px;          /* Adjusted for mobile */
   }
 }
