@@ -1,13 +1,6 @@
 /* ================= HERO ================= */
 
 .hero {
-<<<<<<< HEAD
-  width: 100%;                 /* Prevent weird compression */
-  max-width: 1200px;
-  margin: 0 auto;              /* ⭐ CRITICAL FIX – centers hero */
-  text-align: center;
-  padding: 140px 20px 80px;    /* Improved vertical rhythm */
-=======
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -31,31 +24,36 @@
     radial-gradient(circle at center, rgba(255, 255, 255, 0.04), transparent 60%);
 
   filter: blur(40px);
+
   z-index: -2;
+  pointer-events: none;
 }
 
-/* Animated Glow Motion */
+/* Animated Ambient Glow */
 
 .hero::after {
   content: "";
   position: absolute;
   inset: -150px;
 
-  background: radial-gradient(circle,
+  background: radial-gradient(
+    circle,
     rgba(0, 255, 208, 0.08),
     rgba(122, 92, 255, 0.08),
-    transparent 65%);
+    transparent 65%
+  );
 
   animation: heroGlowMove 14s linear infinite;
   filter: blur(60px);
+
   z-index: -1;
+  pointer-events: none;
 }
 
 @keyframes heroGlowMove {
   0% { transform: translate(-5%, -5%); }
   50% { transform: translate(5%, 5%); }
   100% { transform: translate(-5%, -5%); }
->>>>>>> 9d1f845 (Updated footer VFX styling)
 }
 
 
@@ -64,21 +62,26 @@
 .hero h1 {
   font-size: 3.4rem;
   font-weight: 700;
-  color: white;
 
   background: linear-gradient(90deg, #ffffff, #00ffd0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
   text-shadow: 0 0 18px rgba(0, 255, 208, 0.15);
+
+  position: relative;
+  z-index: 2;
 }
 
 .hero h2 {
   font-size: 2rem;
-  color: white;
   margin-top: 10px;
   margin-bottom: 22px;
   opacity: 0.9;
+  color: white;
+
+  position: relative;
+  z-index: 2;
 }
 
 
@@ -87,11 +90,6 @@
 .rotating-text {
   display: inline-block;
   position: relative;
-<<<<<<< HEAD
-  color: #ffd700;
-  min-width: 180px;            /* ⭐ Prevents sideways jumping */
-  text-align: center;
-=======
 
   background: linear-gradient(90deg, #00ffd0, #7a5cff);
   -webkit-background-clip: text;
@@ -111,12 +109,12 @@
   background: linear-gradient(90deg, #00ffd0, #7a5cff);
   filter: blur(14px);
   opacity: 0.35;
+
   z-index: -1;
->>>>>>> 9d1f845 (Updated footer VFX styling)
 }
 
 
-/* ===== TOP TEXT (SLIDE UP) ===== */
+/* ===== TEXT ANIMATIONS ===== */
 
 .rotating-text.up.enter {
   animation: slideUpIn 0.4s ease forwards;
@@ -126,31 +124,6 @@
   animation: slideUpOut 0.4s ease forwards;
 }
 
-@keyframes slideUpIn {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideUpOut {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-25px);
-  }
-}
-
-
-/* ===== SECOND TEXT (SLIDE DOWN) ===== */
-
 .rotating-text.down.enter {
   animation: slideDownIn 0.4s ease forwards;
 }
@@ -159,26 +132,24 @@
   animation: slideDownOut 0.4s ease forwards;
 }
 
+@keyframes slideUpIn {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUpOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-25px); }
+}
+
 @keyframes slideDownIn {
-  from {
-    opacity: 0;
-    transform: translateY(-25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-25px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideDownOut {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(25px);
-  }
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(25px); }
 }
 
 
@@ -192,6 +163,9 @@
   margin: 0 auto;
 
   text-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+
+  position: relative;
+  z-index: 2;
 }
 
 
@@ -205,12 +179,7 @@
   font-size: 0.9rem;
   border-radius: 4px;
   transform: skewX(-12deg);
-
-  position: relative;
-  overflow: hidden;
 }
-
-/* Neon Tag Styles */
 
 .tag.yellow {
   background: linear-gradient(90deg, #ffd700, #ffea70);
@@ -247,7 +216,7 @@
   transition: 0.35s ease;
 }
 
-/* VFX Glow Sweep */
+/* Glow Sweep */
 
 .btn-get-started::before {
   content: "";
@@ -282,12 +251,9 @@
 /* ================= RESPONSIVE ================= */
 
 @media (max-width: 768px) {
+
   .hero {
-<<<<<<< HEAD
-    padding: 110px 20px 60px;
-=======
     padding: 130px 20px 70px;
->>>>>>> 9d1f845 (Updated footer VFX styling)
   }
 
   .hero h1 {
@@ -299,10 +265,6 @@
   }
 
   .rotating-text {
-<<<<<<< HEAD
-    min-width: 140px;          /* Adjusted for mobile */
-=======
     min-width: 140px;
->>>>>>> 9d1f845 (Updated footer VFX styling)
   }
 }
