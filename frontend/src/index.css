@@ -44,110 +44,133 @@ section {
 
 
 /* ===================================================== */
-/* 🚀 GLOBAL PERFORMANCE SYSTEM */
+/* 🚀 SPEED OPTIMIZATION LAYER */
 /* ===================================================== */
 
-/* ---------- Tablets ---------- */
+/* ⭐ CRITICAL: Never use transition: all */
 
-@media (max-width: 1024px) {
-
-  /* Reduce blur intensity */
-  header,
-  .team-card,
-  .faq-item,
-  .contact-block,
-  .portfolio-item {
-    backdrop-filter: blur(10px);
-  }
-
-  /* Reduce glow strength */
-  header,
-  .team-card,
-  .faq-item,
-  .portfolio-item {
-    box-shadow:
-      0 10px 30px rgba(0,0,0,0.6);
-  }
-
-  /* Slow transitions slightly */
-  * {
-    transition-duration: 0.3s;
-  }
+header,
+.team-card,
+.portfolio-item,
+.faq-item,
+.package-btn,
+.btn-get-started {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease,
+    color 0.35s ease;
 }
 
 
-/* ---------- Mobiles ---------- */
+/* ⭐ GPU ACCELERATION (Huge improvement) */
+
+header,
+.team-card,
+.portfolio-item,
+.faq-item,
+.btn-get-started {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+
+/* ⭐ Reduce repaint-heavy shadows */
+
+header,
+.team-card,
+.portfolio-item,
+.faq-item {
+  box-shadow:
+    0 12px 35px rgba(0,0,0,0.55);
+}
+
+
+/* ⭐ Disable layout thrashing */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+/* ===================================================== */
+/* 📱 HIGH PERFORMANCE MOBILE MODE */
+/* ===================================================== */
 
 @media (max-width: 768px) {
 
-  /* ⭐ Disable expensive GPU effects */
+  /* Blur is the #1 mobile killer */
   header,
   .team-card,
   .faq-item,
-  .contact-block,
-  .portfolio-item {
+  .portfolio-item,
+  .contact-block {
     backdrop-filter: none !important;
   }
 
-  /* ⭐ Reduce ALL glow shadows */
+  /* Simplified shadows */
   header,
   .team-card,
   .faq-item,
-  .contact-block,
-  .portfolio-item,
-  .btn-get-started {
+  .portfolio-item {
     box-shadow:
       0 6px 18px rgba(0,0,0,0.45) !important;
   }
 
-  /* ⭐ Disable heavy animated layers */
+  /* Kill heavy VFX layers */
   header::before,
   header::after,
   .hero::before,
   .hero::after,
-  .team-card::before,
-  .portfolio-item::before {
+  .portfolio-item::before,
+  .team-card::before {
     animation: none !important;
     filter: none !important;
-    opacity: 0.25;
   }
 
-  /* ⭐ Kill repaint-heavy hover transforms */
+  /* Remove expensive hover transforms */
   header:hover,
   .team-card:hover,
   .portfolio-item:hover {
-    transform: none !important;
+    transform: none;
   }
 
-  /* ⭐ Make interactions instant */
-  * {
-    transition-duration: 0.2s !important;
+  /* Make UI feel instant */
+  header,
+  .team-card,
+  .faq-item,
+  .portfolio-item,
+  .package-btn {
+    transition-duration: 0.2s;
   }
 
-  /* ⭐ FAQ Lag Fix */
+  /* FAQ Lag Fix */
   .faq-answer {
-    animation: none !important;
+    animation: none;
   }
 }
 
 
-/* ---------- Small / Low-End Phones ---------- */
+/* ===================================================== */
+/* 📱 ULTRA FAST LOW-END DEVICE MODE */
+/* ===================================================== */
 
 @media (max-width: 480px) {
 
-  /* Ultra-light mode */
   header::before,
   .hero::before,
-  .team-section::before,
-  .portfolio::before {
+  .portfolio::before,
+  .team-section::before {
     display: none;
   }
 
-  /* Further reduce shadows */
   header,
   .team-card,
-  .faq-item,
-  .portfolio-item {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+  .portfolio-item,
+  .faq-item {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.35);
   }
 }
