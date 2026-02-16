@@ -362,3 +362,227 @@ body {
     width: 100%;
   }
 }
+
+
+
+
+/* ================= GLOBAL SAFETY FIX (VERY IMPORTANT) ================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ================= MAIN HEADER WRAPPER ================= */
+
+.main {
+  position: fixed;
+  top: 16px;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+
+  z-index: 1000;
+  pointer-events: none;
+
+  padding: 0 16px;   /* ⭐ EDGE BREATHING SPACE */
+}
+
+/* Allow clicks */
+
+.main header {
+  pointer-events: auto;
+}
+
+/* ================= HEADER CONTAINER ================= */
+
+header {
+  width: 100%;
+  max-width: 1200px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 18px;   /* ⭐ MOBILE-FIRST SAFE */
+
+  border-radius: 999px;  /* ⭐ BULLETPROOF RADIUS */
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  background: rgba(10, 10, 18, 0.75);
+  backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.55);
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* ================= ENERGY GLOW ================= */
+
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    120deg,
+    transparent 25%,
+    rgba(0, 255, 208, 0.35),
+    rgba(122, 92, 255, 0.35),
+    transparent 75%
+  );
+
+  opacity: 0.35;
+  filter: blur(16px);
+
+  pointer-events: none;
+}
+
+/* ================= LOGO ================= */
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-square {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.logo-square img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ================= NAVIGATION ================= */
+
+.subnav ul {
+  display: flex;
+  gap: 26px;
+  list-style: none;
+}
+
+.subnav a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.9rem;
+  transition: 0.3s ease;
+}
+
+.subnav a:hover {
+  color: #00ffd0;
+}
+
+/* ================= CTA ================= */
+
+.cta-buttons {
+  background: linear-gradient(90deg, #00ffd0, #7a5cff);
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+.cta-buttons a {
+  text-decoration: none;
+  color: black;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ================= HAMBURGER ================= */
+
+.menu-toggle {
+  display: none;
+  font-size: 1.4rem;
+  color: #00ffd0;
+  cursor: pointer;
+}
+
+/* ================= MOBILE MENU ================= */
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+
+  width: 100%;
+  height: 100vh;
+
+  background: rgba(5, 5, 12, 0.98);
+  backdrop-filter: blur(20px);
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  padding: 120px 30px;
+
+  transition: right 0.35s ease;
+  z-index: 999;
+}
+
+.mobile-menu.active {
+  right: 0;
+}
+
+.mobile-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+/* ================= BODY OFFSET ================= */
+
+body {
+  padding-top: 78px;   /* ⭐ PERFECT MOBILE OFFSET */
+  background: #050505;
+}
+
+/* ===================================================== */
+/* ================= RESPONSIVE SYSTEM ================= */
+/* ===================================================== */
+
+/* ---------- Tablets ---------- */
+
+@media (max-width: 920px) {
+
+  .subnav {
+    display: none;
+  }
+
+  .cta-buttons {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  header {
+    padding: 10px 16px;
+  }
+}
+
+/* ---------- Small Phones ---------- */
+
+@media (max-width: 480px) {
+
+  .logo-square {
+    width: 42px;
+    height: 42px;
+  }
+
+  header {
+    padding: 9px 14px;
+  }
+}
