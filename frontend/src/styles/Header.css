@@ -11,8 +11,6 @@
 
   z-index: 1000;
   pointer-events: none;
-
-  padding: 0 20px;   /* ⭐ CRITICAL FIX */
 }
 
 .main header {
@@ -26,12 +24,12 @@ header {
 
   display: flex;
   width: 100%;
-  max-width: 1200px;   /* ⭐ MATCHES HERO */
+  max-width: 1250px;
 
   justify-content: space-between;
   align-items: center;
 
-  padding: 12px 26px;  /* ⭐ BALANCED */
+  padding: 14px 38px;
 
   border-radius: 60px;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -44,13 +42,12 @@ header {
     inset 0 0 12px rgba(122, 92, 255, 0.08);
 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-weight: bold;
 
   overflow: hidden;
-  box-sizing: border-box;
-  font-weight: bold;
 }
 
-/* ================= ENERGY GLOW BORDER ================= */
+/* Energy Glow Border */
 
 header::before {
   content: "";
@@ -69,10 +66,9 @@ header::before {
   opacity: 0.35;
   filter: blur(18px);
   z-index: -1;
-  pointer-events: none;
 }
 
-/* ================= MOVING ENERGY SWEEP ================= */
+/* Moving Energy Sweep */
 
 header::after {
   content: "";
@@ -99,8 +95,6 @@ header::after {
   100% { left: 120%; }
 }
 
-/* ================= HOVER ================= */
-
 header:hover {
   transform: translateY(-1px);
 
@@ -117,8 +111,8 @@ header:hover {
 }
 
 .logo-square {
-  width: 70px;
-  height: 70px;
+  width: 85px;
+  height: 85px;
   border-radius: 50%;
 
   display: flex;
@@ -131,7 +125,7 @@ header:hover {
   position: relative;
 }
 
-/* Logo Glow */
+/* Logo Glow Aura */
 
 .logo-square::before {
   content: "";
@@ -166,21 +160,19 @@ header:hover {
 
 .subnav ul {
   display: flex;
-  gap: 40px;
+  gap: 50px;
   list-style: none;
 }
 
 .subnav a {
   text-decoration: none;
   color: white;
-  font-size: 0.95rem;
+  font-size: 1rem;
   opacity: 0.7;
 
   position: relative;
   transition: 0.35s ease;
 }
-
-/* Underline Glow */
 
 .subnav a::after {
   content: "";
@@ -214,7 +206,7 @@ header:hover {
   gap: 18px;
 
   background: linear-gradient(90deg, #00ffd0, #7a5cff);
-  padding: 8px 20px;
+  padding: 10px 22px;
 
   border-radius: 30px;
 
@@ -222,7 +214,7 @@ header:hover {
   overflow: hidden;
 }
 
-/* Shimmer */
+/* Shimmer Sweep */
 
 .cta-buttons::before {
   content: "";
@@ -252,18 +244,29 @@ header:hover {
   text-decoration: none;
   color: black;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+
+  transition: transform 0.25s ease;
+}
+
+.cta-buttons a:hover {
+  transform: scale(1.05);
 }
 
 /* ================= HAMBURGER ================= */
 
 .menu-toggle {
   display: none;
-  font-size: 1.7rem;
+  font-size: 1.9rem;
   cursor: pointer;
   color: #00ffd0;
 
+  transition: transform 0.25s ease;
   text-shadow: 0 0 12px rgba(0, 255, 208, 0.6);
+}
+
+.menu-toggle:hover {
+  transform: scale(1.08);
 }
 
 /* ================= MOBILE MENU ================= */
@@ -289,6 +292,35 @@ header:hover {
   z-index: 999;
 }
 
+.mobile-menu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 2px;
+  height: 100%;
+
+  background: linear-gradient(180deg, #00ffd0, #7a5cff);
+  box-shadow: 0 0 18px rgba(122, 92, 255, 0.5);
+}
+
+.mobile-menu a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.05rem;
+  opacity: 0.7;
+
+  transition: 0.3s ease;
+}
+
+.mobile-menu a:hover {
+  opacity: 1;
+  color: #00ffd0;
+  transform: translateX(6px);
+  text-shadow: 0 0 10px rgba(0, 255, 208, 0.6);
+}
+
 .mobile-menu.active {
   right: 0;
 }
@@ -296,32 +328,79 @@ header:hover {
 /* ================= BODY OFFSET ================= */
 
 body {
-  padding-top: 105px;
+  padding-top: 115px;
   background: #050505;
 }
 
-/* ===================================================== */
 /* ================= RESPONSIVE SYSTEM ================= */
-/* ===================================================== */
 
-@media (max-width: 920px) {
+@media (max-width: 1440px) {
+  header {
+    max-width: 1180px;
+    border-radius: 52px;
+  }
 
   .subnav ul {
-    gap: 24px;
+    gap: 42px;
   }
 
   .logo-square {
-    width: 58px;
-    height: 58px;
+    width: 78px;
+    height: 78px;
+  }
+}
+
+@media (max-width: 1240px) {
+  header {
+    max-width: 1000px;
+    padding: 13px 30px;
+    border-radius: 46px;
   }
 
+  .subnav ul {
+    gap: 34px;
+  }
+
+  .logo-square {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 1080px) {
   header {
+    max-width: 900px;
     border-radius: 40px;
+  }
+
+  .subnav ul {
+    gap: 26px;
+  }
+
+  .logo-square {
+    width: 62px;
+    height: 62px;
+  }
+}
+
+@media (max-width: 920px) {
+  header {
+    border-radius: 34px;
+    padding: 10px 22px;
+  }
+
+  .logo-square {
+    width: 55px;
+    height: 55px;
+  }
+
+  header::before {
+    opacity: 0.25;
+    filter: blur(14px);
   }
 }
 
 @media (max-width: 768px) {
-
   .subnav,
   .cta-buttons {
     display: none;
@@ -333,7 +412,7 @@ body {
 
   header {
     border-radius: 30px;
-    padding: 10px 18px;
+    padding: 10px 20px;
   }
 
   .logo-square {
@@ -341,21 +420,33 @@ body {
     height: 52px;
   }
 
+  header::before {
+    opacity: 0.18;
+    filter: blur(10px);
+  }
+
+  header::after {
+    height: 1px;
+  }
+
   body {
-    padding-top: 90px;
+    padding-top: 95px;
   }
 }
 
 @media (max-width: 480px) {
-
   header {
     border-radius: 22px;
-    padding: 9px 14px;
+    padding: 9px 16px;
   }
 
   .logo-square {
     width: 44px;
     height: 44px;
+  }
+
+  header::before {
+    opacity: 0.12;
   }
 
   .mobile-menu {
@@ -366,7 +457,12 @@ body {
 
 
 
-/* ================= GLOBAL SAFETY FIX (VERY IMPORTANT) ================= */
+
+
+
+
+
+/* ================= GLOBAL SAFETY ================= */
 
 *,
 *::before,
@@ -374,30 +470,27 @@ body {
   box-sizing: border-box;
 }
 
-/* ================= MAIN HEADER WRAPPER ================= */
+/* ================= WRAPPER ================= */
 
 .main {
   position: fixed;
-  top: 16px;
+  top: 14px;
   left: 0;
   width: 100%;
 
   display: flex;
   justify-content: center;
 
+  padding: 0 14px;
   z-index: 1000;
   pointer-events: none;
-
-  padding: 0 16px;   /* ⭐ EDGE BREATHING SPACE */
 }
-
-/* Allow clicks */
 
 .main header {
   pointer-events: auto;
 }
 
-/* ================= HEADER CONTAINER ================= */
+/* ================= HEADER ================= */
 
 header {
   width: 100%;
@@ -407,16 +500,17 @@ header {
   justify-content: space-between;
   align-items: center;
 
-  padding: 10px 18px;   /* ⭐ MOBILE-FIRST SAFE */
+  padding: 14px 18px;   /* ⭐ CRITICAL FIX */
+  min-height: 64px;     /* ⭐ LOCKS HEIGHT */
 
-  border-radius: 999px;  /* ⭐ BULLETPROOF RADIUS */
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 28px;  /* ⭐ FIXED */
+  border: 1px solid rgba(255, 255, 255, 0.12);
 
-  background: rgba(10, 10, 18, 0.75);
+  background: rgba(10, 10, 18, 0.82);
   backdrop-filter: blur(18px);
 
   box-shadow:
-    0 10px 35px rgba(0, 0, 0, 0.55);
+    0 10px 30px rgba(0, 0, 0, 0.55);
 
   position: relative;
   overflow: hidden;
@@ -438,23 +532,16 @@ header::before {
   );
 
   opacity: 0.35;
-  filter: blur(16px);
-
+  filter: blur(14px);
   pointer-events: none;
 }
 
 /* ================= LOGO ================= */
 
-.logo {
-  display: flex;
-  align-items: center;
-}
-
 .logo-square {
-  width: 46px;
-  height: 46px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -469,7 +556,7 @@ header::before {
 
 .subnav ul {
   display: flex;
-  gap: 26px;
+  gap: 22px;
   list-style: none;
 }
 
@@ -477,19 +564,14 @@ header::before {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.75);
   font-size: 0.9rem;
-  transition: 0.3s ease;
-}
-
-.subnav a:hover {
-  color: #00ffd0;
 }
 
 /* ================= CTA ================= */
 
 .cta-buttons {
   background: linear-gradient(90deg, #00ffd0, #7a5cff);
-  padding: 6px 14px;
-  border-radius: 999px;
+  padding: 7px 14px;
+  border-radius: 18px;
 }
 
 .cta-buttons a {
@@ -523,9 +605,9 @@ header::before {
 
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 26px;
 
-  padding: 120px 30px;
+  padding: 110px 28px;
 
   transition: right 0.35s ease;
   z-index: 999;
@@ -535,31 +617,20 @@ header::before {
   right: 0;
 }
 
-.mobile-menu a {
-  color: white;
-  text-decoration: none;
-  font-size: 1rem;
-}
-
 /* ================= BODY OFFSET ================= */
 
 body {
-  padding-top: 78px;   /* ⭐ PERFECT MOBILE OFFSET */
+  padding-top: 86px;   /* ⭐ MATCHES HEADER */
   background: #050505;
 }
 
 /* ===================================================== */
-/* ================= RESPONSIVE SYSTEM ================= */
+/* ================= RESPONSIVE ======================== */
 /* ===================================================== */
-
-/* ---------- Tablets ---------- */
 
 @media (max-width: 920px) {
 
-  .subnav {
-    display: none;
-  }
-
+  .subnav,
   .cta-buttons {
     display: none;
   }
@@ -569,20 +640,20 @@ body {
   }
 
   header {
-    padding: 10px 16px;
+    padding: 12px 16px;
+    min-height: 60px;
   }
 }
 
-/* ---------- Small Phones ---------- */
-
 @media (max-width: 480px) {
 
-  .logo-square {
-    width: 42px;
-    height: 42px;
+  header {
+    padding: 11px 14px;
+    border-radius: 22px;
   }
 
-  header {
-    padding: 9px 14px;
+  .logo-square {
+    width: 38px;
+    height: 38px;
   }
 }
