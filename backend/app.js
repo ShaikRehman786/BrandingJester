@@ -3,111 +3,136 @@ const connectDB = require("./config/db");
 require("dotenv").config();
 const cors = require("cors");
 const path = require("path");
-const http = require("http");   //  IMPORTANT
+const http = require("http");
 const { Server } = require("socket.io");
 
 const generateContent = require("./services/aiServices");
+const Lead = require("./models/Lead");
 
-/*  CREATE EXPRESS APP FIRST */
 const app = express();
-
-/*  CREATE HTTP SERVER */
 const server = http.createServer(app);
 
-/*  ATTACH SOCKET.IO */
+/* ================= SOCKET.IO ================= */
+
 const io = new Server(server, {
-    cors: { origin: "*" }
+  cors: { origin: "*" }
 });
 
-/*  SOCKET CONNECTION */
-io.on("connection", (socket) => {
-    console.log("Admin Connected:", socket.id);
-});
+io.on("connection", () => {}); // silent in production
 
-/*  CONNECT DATABASE */
+/* ================= DATABASE ================= */
+
 connectDB();
 
-/*  MIDDLEWARE */
+/* ================= MIDDLEWARE ================= */
+
 app.use(cors());
 app.use(express.json());
 
-/*  SERVE FRONTEND */
+/* ================= FRONTEND ================= */
+
 app.use(express.static(path.join(__dirname, "../brandingjester.com")));
 
-/*  PAGE ROUTES */
 app.get("/login", (req, res) => {
-    res.sendFile(path.join(__dirname, "../brandingjester.com/login.html"));
+  res.sendFile(path.join(__dirname, "../brandingjester.com/login.html"));
 });
 
 app.get("/dashboard", (req, res) => {
-    res.sendFile(path.join(__dirname, "../brandingjester.com/dashboard.html"));
+  res.sendFile(path.join(__dirname, "../brandingjester.com/dashboard.html"));
 });
 
-/*  API ROUTES */
+/* ================= API ROUTES ================= */
+
 app.use("/auth", require("./routes/authRoutes"));
 app.use("/clients", require("./routes/clientRoutes"));
 app.use("/projects", require("./routes/projectRoutes"));
 app.use("/employee", require("./routes/employeeRoutes"));
 app.use("/dashboard", require("./routes/dashboardRoutes"));
 
-/*  FILES */
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+/* ================= SAVE ADMIN TOKEN ================= */
+
+app.post("/api/save-token", async (req, res) => {
+  try {
+
+    const { token } = req.body;
+
+    if (!token) {
+      return res.status(400).json({ error: "Token required" });
+    }
+
+    global.adminToken = token;
+
+    res.json({ success: true });
+
+  } catch (err) {
+    res.status(500).json({ error: "Failed to save token" });
+  }
+});
+
+/* ================= FETCH LEADS ================= */
+
+app.get("/api/leads", async (req, res) => {
+  try {
+
+    const leads = await Lead.find().sort({ createdAt: -1 });
+
+    res.json(leads);
+
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch leads" });
+  }
+});
 
 /* ================= CHATBOT LEAD API ================= */
 
-const Lead = require("./models/Lead");   //  create model
-
 app.post("/api/chatbot/lead", async (req, res) => {
-    try {
+  try {
 
-        const { phone, message } = req.body;
+    const { phone, message } = req.body;
 
-        if (!phone) {
-            return res.status(400).json({ error: "Phone required" });
-        }
-
-        const newLead = await Lead.create({ phone, message });
-
-        /*  REAL-TIME NOTIFICATION */
-        io.emit("newLead", newLead);
-
-        res.json({ success: true });
-
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ error: "Server error" });
+    if (!phone) {
+      return res.status(400).json({ error: "Phone required" });
     }
+
+    const newLead = await Lead.create({ phone, message });
+
+    io.emit("newLead", newLead);
+
+    res.json({ success: true });
+
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
 });
 
 /* ================= AI CHAT API ================= */
 
 app.post("/api/chatbot/message", async (req, res) => {
-    try {
+  try {
 
-        const { message } = req.body;
+    const { message } = req.body;
 
-        if (!message) {
-            return res.status(400).json({ error: "Message required" });
-        }
-
-        const reply = await generateContent(message);
-
-        res.json({ reply });
-
-    } catch (err) {
-
-        console.log("Chatbot API Error:", err);
-
-        res.json({
-            reply: "Sorry — our assistant is temporarily busy. Please try again in a moment."
-        });
+    if (!message) {
+      return res.status(400).json({ error: "Message required" });
     }
+
+    const reply = await generateContent(message);
+
+    res.json({ reply });
+
+  } catch (err) {
+    res.json({
+      reply: "Sorry — our assistant is temporarily busy. Please try again in a moment."
+    });
+  }
 });
 
+/* ================= SERVER ================= */
 
-/*  START SERVER (NOT app.listen) */
 const PORT = process.env.PORT || 5600;
 
 server.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });

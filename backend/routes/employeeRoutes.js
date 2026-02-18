@@ -4,7 +4,7 @@ const router = express.Router();
 /* ================= MIDDLEWARE ================= */
 
 const { protect, adminOnly } = require("../middleware/authMiddleware");
-const upload = require("../middleware/uploadMiddleware");   // ✅ THIS WAS MISSING
+const upload = require("../middleware/uploadMiddleware")
 
 /* ================= CONTROLLER ================= */
 
@@ -22,7 +22,7 @@ router.post(
   "/add",
   protect,
   adminOnly,
-  upload.single("image"),    // ✅ Now defined
+  upload.single("image"), 
   createEmployee
 );
 

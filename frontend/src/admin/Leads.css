@@ -1,0 +1,145 @@
+/* ================= LEADS PAGE ================= */
+
+.leads-page {
+  padding: 28px;
+  animation: fadeIn 0.35s ease;
+}
+
+.leads-page h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 22px;
+  color: white;
+}
+
+/* ================= LEADS GRID ================= */
+
+.leads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+/* ================= LEAD CARD ================= */
+
+.lead-card {
+  background: rgba(18, 18, 32, 0.65);
+  backdrop-filter: blur(16px);
+
+  border-radius: 16px;
+  padding: 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  transition: all 0.25s ease;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.lead-card:hover {
+  transform: translateY(-4px);
+
+  border: 1px solid rgba(122, 92, 255, 0.35);
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.45),
+    0 0 25px rgba(122, 92, 255, 0.15);
+}
+
+/* ================= HEADER ================= */
+
+.lead-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 10px;
+}
+
+.lead-phone {
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+}
+
+/* ================= MESSAGE ================= */
+
+.lead-message {
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 10px;
+}
+
+/* ================= META INFO ================= */
+
+.lead-meta {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ================= STATUS BADGE ================= */
+
+.status-badge {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 30px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* NEW */
+.status-new {
+  background: rgba(0, 255, 208, 0.12);
+  color: #00ffd0;
+}
+
+/* CONTACTED */
+.status-contacted {
+  background: rgba(122, 92, 255, 0.15);
+  color: #7a5cff;
+}
+
+/* CONVERTED */
+.status-converted {
+  background: rgba(0, 255, 100, 0.12);
+  color: #00ff64;
+}
+
+/* IGNORED */
+.status-ignored {
+  background: rgba(255, 70, 70, 0.12);
+  color: #ff4646;
+}
+
+/* ================= EMPTY STATE ================= */
+
+.leads-empty {
+  opacity: 0.5;
+  font-size: 14px;
+}
+
+/* ================= SCROLLBAR POLISH ================= */
+
+.leads-page::-webkit-scrollbar {
+  width: 6px;
+}
+
+.leads-page::-webkit-scrollbar-thumb {
+  background: rgba(122, 92, 255, 0.4);
+  border-radius: 10px;
+}
+
+/* ================= FADE IN ================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

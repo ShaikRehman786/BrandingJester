@@ -28,42 +28,59 @@ function Chatbot() {
 
   /* ================= PHONE SUBMIT ================= */
 
-  const submitPhone = async () => {
+const submitPhone = async () => {
 
-    if (!validatePhone(phone)) {
+  if (!validatePhone(phone)) {
+    setMessages(prev => [
+      ...prev,
+      { type: "bot", text: "Hmm 🤔 That doesn't look like a valid phone number." }
+    ]);
+    return;
+  }
+
+  try {
+
+    setTyping(true);
+
+    const res = await axios.post(`${API}/api/chatbot/lead`, {
+      phone,
+      message: "New chatbot user"
+    });
+
+    /* Open WhatsApp if backend returns URL */
+    if (res.data?.whatsappURL) {
+      window.open(res.data.whatsappURL, "_blank");
+    }
+
+    setTimeout(() => {
+
+      setTyping(false);
+      setPhoneVerified(true);
+
       setMessages(prev => [
         ...prev,
-        { type: "bot", text: "Hmm 🤔 That doesn't look like a valid phone number." }
+        { type: "bot", text: "Perfect 👍 How can I help you today?" }
       ]);
-      return;
-    }
 
-    try {
+    }, 500);
 
-      setTyping(true);
+  } catch (err) {
 
-      await axios.post(`${API}/api/chatbot/lead`, { 
-        phone,
-        message: "New chatbot user"
-      });
+    console.log("Lead Error:", err);
 
-      setTimeout(() => {
-
-        setTyping(false);
-        setPhoneVerified(true);
-
-        setMessages(prev => [
-          ...prev,
-          { type: "bot", text: "Perfect 👍 How can I help you today?" }
-        ]);
-
-      }, 500);
-
-    } catch (err) {
-      console.log("Lead Error:", err);
+    setTimeout(() => {
+      setMessages(prev => [
+        ...prev,
+        {
+          type: "bot",
+          text: "Oops 😅 Something went wrong while saving your number. Please try again."
+        }
+      ]);
       setTyping(false);
-    }
-  };
+    }, 400);
+  }
+};
+
 
   /* ================= MESSAGE SEND ================= */
 
