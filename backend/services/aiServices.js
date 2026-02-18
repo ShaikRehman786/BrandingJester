@@ -3,6 +3,17 @@ const fetch = require("node-fetch");
 const generateContent = async (message) => {
     try {
 
+        /* ENV VALIDATION (VERY IMPORTANT) */
+        if (!process.env.GEMINI_API_KEY) {
+            console.log("❌ GEMINI_API_KEY Missing");
+            return "AI configuration error";
+        }
+
+        if (!process.env.GEMINI_MODEL) {
+            console.log("❌ GEMINI_MODEL Missing");
+            return "AI configuration error";
+        }
+
         const response = await fetch(
             `https://generativelanguage.googleapis.com/v1beta/models/${process.env.GEMINI_MODEL}:generateContent?key=${process.env.GEMINI_API_KEY}`,
             {
@@ -38,30 +49,33 @@ ${message}
             }
         );
 
-        /*  HTTP Error Guard */
+        /* HTTP ERROR HANDLING */
         if (!response.ok) {
             const errorData = await response.json();
-            console.log("Gemini HTTP Error:", errorData);
+
+            console.log("🚨 Gemini HTTP Error:");
+            console.log("Status:", response.status);
+            console.log("Details:", errorData);
 
             return "AI service temporarily unavailable";
         }
 
         const data = await response.json();
 
-        /*  Empty Response Guard (Classic Gemini Behavior) */
+        /*  EMPTY RESPONSE HANDLING */
         if (!data.candidates || data.candidates.length === 0) {
-            console.log("Gemini Empty Response:", data);
+            console.log("⚠ Gemini Empty Response:", data);
 
             return "Hmm 🤔 I couldn't generate a reply. Could you rephrase that?";
         }
 
         return (
-            data.candidates[0].content.parts[0].text ||
+            data.candidates[0]?.content?.parts?.[0]?.text ||
             "Sorry, I couldn't generate a response."
         );
 
     } catch (error) {
-        console.log("Gemini Error:", error);
+        console.log("🚨 Gemini Runtime Error:", error);
         return "Sorry, something went wrong";
     }
 };
