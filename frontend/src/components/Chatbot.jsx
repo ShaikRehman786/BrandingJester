@@ -3,6 +3,7 @@ import axios from "axios";
 import "../styles/Chatbot.css";
 import ReactMarkdown from "react-markdown";
 
+const API = import.meta.env.VITE_API_URL;   // ✅ IMPORTANT
 
 function Chatbot() {
 
@@ -40,7 +41,7 @@ function Chatbot() {
 
       setTyping(true);
 
-      await axios.post("http://localhost:5600/api/chatbot/lead", {
+      await axios.post(`${API}/api/chatbot/lead`, {   // ✅ FIXED
         phone,
         message: "New chatbot user"
       });
@@ -58,7 +59,7 @@ function Chatbot() {
       }, 500);
 
     } catch (err) {
-      console.log(err);
+      console.log("Lead Error:", err);
       setTyping(false);
     }
   };
@@ -78,7 +79,6 @@ function Chatbot() {
 
     setInput("");
 
-    /* 🔥 Natural thinking delay */
     setTimeout(() => {
       setTyping(true);
     }, 150);
@@ -86,16 +86,14 @@ function Chatbot() {
     try {
 
       const res = await axios.post(
-        "http://localhost:5600/api/chatbot/message",
+        `${API}/api/chatbot/message`,   // ✅ FIXED
         { message: userMessage }
       );
 
-      /* Response Safety Guard */
       const botReply =
         res.data?.reply?.trim() ||
         "Sorry — I couldn't respond properly. Try again 👍";
 
-      /* 🔥 Human-like delay */
       const delay = Math.random() * 500 + 500;
 
       setTimeout(() => {
@@ -110,7 +108,7 @@ function Chatbot() {
       }, delay);
 
     } catch (err) {
-      console.log(err);
+      console.log("Chat Error:", err);
 
       setTimeout(() => {
         setMessages(prev => [
