@@ -3,7 +3,8 @@ import axios from "axios";
 import "../styles/Chatbot.css";
 import ReactMarkdown from "react-markdown";
 
-const API = import.meta.env.VITE_API_URL;   // ✅ IMPORTANT
+const API = import.meta.env.VITE_API_BASE_URL;
+
 
 function Chatbot() {
 
@@ -41,7 +42,7 @@ function Chatbot() {
 
       setTyping(true);
 
-      await axios.post(`${API}/api/chatbot/lead`, {   // ✅ FIXED
+      await axios.post(`${API}/api/chatbot/lead`, { 
         phone,
         message: "New chatbot user"
       });
@@ -86,7 +87,7 @@ function Chatbot() {
     try {
 
       const res = await axios.post(
-        `${API}/api/chatbot/message`,   // ✅ FIXED
+        `${API}/api/chatbot/message`, 
         { message: userMessage }
       );
 
