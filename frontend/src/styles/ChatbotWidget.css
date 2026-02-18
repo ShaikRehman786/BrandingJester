@@ -1,0 +1,198 @@
+/* ================= CHATBOT BUTTON ================= */
+
+.chatbot-button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  z-index: 1000;
+
+  color: white;
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  background: rgba(10, 10, 18, 0.75);
+
+  /* 🔥 Reduced blur = smoother mobile */
+  backdrop-filter: blur(10px);
+
+  /* 🔥 Lighter shadow */
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.45),
+    inset 0 0 6px rgba(122, 92, 255, 0.06);
+
+  /* 🔥 GPU-friendly */
+  transform: translateZ(0);
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* ================= ROTATING LIGHT RING ================= */
+
+.chatbot-button::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    #00ffd0,
+    #7a5cff,
+    transparent
+  );
+
+  opacity: 0.75;
+
+  /* 🔥 Smaller blur */
+  filter: blur(4px);
+
+  /* 🔥 Slightly slower = cheaper */
+  animation: rotateRing 6s linear infinite;
+
+  z-index: -1;
+}
+
+@keyframes rotateRing {
+  to { transform: rotate(360deg); }
+}
+
+/* ================= INNER SURFACE ================= */
+
+.chatbot-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(10, 10, 18, 0.85);
+  z-index: -1;
+}
+
+/* ================= ICON ================= */
+
+.chat-icon {
+  transition: transform 0.25s ease;
+  will-change: transform;
+}
+
+.chatbot-button:hover .chat-icon {
+  transform: scale(1.08);
+}
+
+/* ================= HOVER ================= */
+
+.chatbot-button:hover {
+  transform: scale(1.06);
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.6),
+    0 0 22px rgba(122, 92, 255, 0.25);
+}
+
+/* ================= ACTIVE ================= */
+
+.chatbot-button:active {
+  transform: scale(0.96);
+}
+
+/* ================= CHAT WINDOW ================= */
+
+.chatbot-window {
+  position: fixed;
+  bottom: 82px;
+  right: 24px;
+
+  z-index: 1000;
+
+  animation: botFadeIn 0.2s ease;
+  transform: translateZ(0);
+}
+
+@keyframes botFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 920px) {
+
+  .chatbot-button {
+    width: 58px;
+    height: 58px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .chatbot-window {
+    bottom: 76px;
+    right: 20px;
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+  .chatbot-button {
+    width: 54px;
+    height: 54px;
+
+    bottom: 16px;
+    right: 16px;
+
+    backdrop-filter: blur(6px);   /* 🔥 Big mobile win */
+  }
+
+  .chatbot-button::before {
+    filter: blur(3px);            /* 🔥 Lighter GPU load */
+  }
+
+  .chatbot-window {
+    width: calc(100% - 20px);
+    right: 10px;
+    bottom: 72px;
+  }
+}
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 420px) {
+
+  .chatbot-window {
+    width: calc(100% - 14px);
+    right: 7px;
+    bottom: 68px;
+  }
+}
+
+/* ================= SAFE AREA SUPPORT ================= */
+
+@supports(padding: max(0px)) {
+
+  .chatbot-button {
+    bottom: max(16px, env(safe-area-inset-bottom));
+    right: max(16px, env(safe-area-inset-right));
+  }
+
+  .chatbot-window {
+    bottom: max(72px, calc(env(safe-area-inset-bottom) + 56px));
+  }
+}

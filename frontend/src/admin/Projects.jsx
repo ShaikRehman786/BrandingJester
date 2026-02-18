@@ -12,7 +12,7 @@ function Projects() {
   const [projectName, setProjectName] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("ongoing");
-  const [image, setImage] = useState(null);   // ✅ FILE
+  const [image, setImage] = useState(null);   //  FILE
   const [link, setLink] = useState("");
   const [selectedClient, setSelectedClient] = useState("");
 
@@ -74,7 +74,7 @@ function Projects() {
 
     setSelectedClient(project.client?._id || project.client);
 
-    setImage(null); // ✅ Do NOT auto-fill file input
+    setImage(null); //  Do NOT auto-fill file input
   };
 
   /* ================= SUBMIT ================= */
@@ -96,7 +96,7 @@ function Projects() {
         return;
       }
 
-      // ✅ Only require image when creating
+      //  Only require image when creating
       if (!image && !editingProject) {
         alert("Project image required");
         return;
@@ -111,7 +111,7 @@ function Projects() {
       formData.append("client", selectedClient);
 
       if (image) {
-        formData.append("image", image);   // ✅ FILE
+        formData.append("image", image);   //  FILE
       }
 
       if (editingProject) {
@@ -173,22 +173,21 @@ function Projects() {
           <option value="pending">Pending</option>
         </select>
 
-        {/* ✅ CLIENT DROPDOWN */}
+        {/*  CLIENT DROPDOWN */}
 
         <select
           value={selectedClient}
           onChange={(e) => setSelectedClient(e.target.value)}
         >
           <option value="">Select Client</option>
-
+  
           {clients.map((client) => (
             <option key={client._id} value={client._id}>
               {client.companyName}
             </option>
           ))}
         </select>
-
-        {/* ✅ FILE PICKER */}
+        {/*  FILE PICKER */}
 
         <input
           type="file"
@@ -213,7 +212,6 @@ function Projects() {
             </button>
           )}
         </div>
-
       </div>
 
       {/* ================= LIST ================= */}

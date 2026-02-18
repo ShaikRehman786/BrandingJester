@@ -9,6 +9,8 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Clients from "./components/Clients";
 
+import ChatbotWidget from "./components/ChatbotWidget"; 
+
 function Home() {
   return (
     <>
@@ -25,6 +27,9 @@ function Home() {
       <FAQ />
       <Contact />
       <Footer />
+
+      {/*  Floating Chatbot */}
+      <ChatbotWidget />
     </>
   );
 }
