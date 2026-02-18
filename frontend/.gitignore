@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 .env
 *.exe
+*.json
+node_modules
