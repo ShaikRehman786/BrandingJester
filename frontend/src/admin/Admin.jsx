@@ -178,7 +178,6 @@ function Admin() {
               <h3>User Queries</h3>
               <p>• Chatbot Users • Leads</p>
             </div>
-
           </div>
         </>
       )}
